@@ -1,0 +1,11 @@
+{
+    "folders": [
+        {
+            "name": "ricocreations",
+            "path": "."
+        }
+    ],
+    "settings": {
+        "cSpell.words": ["babylonjs", "Formik", "localforage", "recaptcha", "vanillaes"]
+    }
+}
