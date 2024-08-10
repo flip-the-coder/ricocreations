@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.js": "/static/js/main.c2e7f469.js",
+    "static/js/637.2149db61.chunk.js": "/static/js/637.2149db61.chunk.js",
+    "static/js/702.32b5b8dc.chunk.js": "/static/js/702.32b5b8dc.chunk.js",
+    "static/js/865.1c0c68a1.chunk.js": "/static/js/865.1c0c68a1.chunk.js",
+    "static/media/omnibuilder-logo.png": "/static/media/omnibuilder-logo.618542897baa53bed43d.png",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/index.html",
+    "main.c2e7f469.js.map": "/static/js/main.c2e7f469.js.map",
+    "637.2149db61.chunk.js.map": "/static/js/637.2149db61.chunk.js.map",
+    "702.32b5b8dc.chunk.js.map": "/static/js/702.32b5b8dc.chunk.js.map",
+    "865.1c0c68a1.chunk.js.map": "/static/js/865.1c0c68a1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.c2e7f469.js"
+  ]
+}
