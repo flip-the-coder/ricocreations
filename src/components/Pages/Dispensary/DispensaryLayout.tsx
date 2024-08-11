@@ -5,22 +5,30 @@ import DispensaryHeader from './Header/DispensaryHeader';
 
 const DispensaryLayout = ({ children }) => {
     return (
-        <div style={{ overflow: 'hidden', height: '100vh' }}>
+        <LayoutWrapper>
             <DispensaryHeader />
             <MyHomesContent>{children}</MyHomesContent>
-        </div>
+        </LayoutWrapper>
     );
 };
 
 export default DispensaryLayout;
 
+const LayoutWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;  /* Prevents overflow on the main container */
+`;
+
 const MyHomesContent = styled.div`
     background: white;
-    overflow: hidden;
-    height: calc(100vh - 60px);
+    flex: 1;  /* Allows content to fill remaining space */
+    overflow-y: auto;  /* Enables vertical scrolling */
+    padding: 20px;  /* Adds padding for better spacing */
 
     @media (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
-        z-index: 0;
-        position: relative;
+        padding: 10px;  /* Adjust padding for smaller screens */
+        box-sizing: border-box;  /* Ensures padding is included in the element's total width and height */
     }
 `;

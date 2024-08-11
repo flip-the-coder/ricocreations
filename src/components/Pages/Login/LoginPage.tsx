@@ -8,8 +8,6 @@ import { Account, RegisterContainer, Title } from './LoginPage.styled';
 const LoginPage: React.FC = () => {
     const intl = useIntl();
 
-    console.log('we are here now')
-
     return (
         <LoginFormLayout>
             <Title>{intl.formatMessage({ id: 'LoginPage.title' })}</Title>

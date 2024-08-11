@@ -1,58 +1,36 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import logo from '../logo.svg';
+import styled from 'styled-components';
 
-const NavigationBar = () => {
-    const pages = [
-        <Link href="/home">Home </Link>,
-        <Link href="/dispensary">Dispensary </Link>,
-        <Link href="/aboutMe">About </Link>
-        // <Link href="/cbd101">CBD 101 </Link>,
-        // <Link href="/contact">Contact </Link>
-    ];
+const HomePage = () => {
     return (
-        <>
-            <Header>
-                <Logo src={logo} alt="logo" />
-                {pages.map}
-            </Header>
-        </>
+        <Container>
+            <Message>
+                All I am saying is that Felipe is pretty amazing. Anyways hope you had a good day.
+            </Message>
+        </Container>
     );
 };
 
-export default NavigationBar;
+export default HomePage;
 
-const spin = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
-const Header = styled.div`
-    background-color: pink;
+const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-    height: 10%;
+    height: 100vh; /* Full viewport height */
+    width: 100vw;  /* Full viewport width */
+    padding: 20px; /* Padding for better spacing */
+    box-sizing: border-box;
+    background-color: #f0f0f0; /* Light background color for contrast */
 `;
 
-const Logo = styled.img`
-    height: 50%;
-    pointer-events: none;
-    justify-content: left;
+const Message = styled.div`
+    text-align: center;
+    font-size: 1.2em; /* Adjust font size as needed */
+    color: #333; /* Dark text color for better readability */
 
-    @media (prefers-reduced-motion: no-preference) {
-        animation: ${spin} infinite 20s linear;
+    @media (max-width: 600px) {
+        font-size: 1em; /* Adjust font size for smaller screens */
+        padding: 10px; /* Adjust padding for smaller screens */
     }
-`;
-
-const Link = styled.a`
-    margin-right: 10px; /* Adjust the margin as needed */
-    text-decoration: none;
-    color: blue; /* Set the desired link color */
 `;

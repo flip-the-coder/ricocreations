@@ -8,7 +8,6 @@ const Dispensary = () => {
         try {
             const response = (await thirdParty.pokemon.getList()).data.results;
             setHelper(response);
-            console.log(response);
         } catch (e) {
             console.error(e);
         } finally {
@@ -16,11 +15,10 @@ const Dispensary = () => {
     };
 
     useEffect(() => {
-        console.log('hello there');
-        const helpMe = async () => {
+        const catchThePokemon = async () => {
             await getPokemonList();
         };
-        helpMe();
+        catchThePokemon();
     }, [helper]);
 
     return (
@@ -35,7 +33,6 @@ const Dispensary = () => {
                     );
                 })}
             </div>
-            indeed we are the gods of the new worlds
         </>
     );
 };
