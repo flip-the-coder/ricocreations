@@ -89,10 +89,8 @@ const LinksContainer = styled.ul<{ isOpen: boolean }>`
   margin: 0;
   padding: 0;
   list-style: none;
-  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
   overflow: hidden;
-  max-height: ${({ isOpen }) => (isOpen ? '500px' : '0')}; /* Adjust height if needed */
-  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)}; /* Fade in/out based on menu state */
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
   
   @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
     flex-direction: column;
@@ -104,57 +102,60 @@ const LinksContainer = styled.ul<{ isOpen: boolean }>`
     border-left: 1px solid grey;
     padding: 1rem;
     z-index: 1000; /* Ensure the menu appears above other content */
+    max-height: ${({ isOpen }) => (isOpen ? '500px' : '0')};
+    opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
   }
 
   @media only screen and (min-width: ${MEDIUM_DEVICE_WIDTH + 1}px) {
-    max-height: none;
     display: flex;
     flex-direction: row;
     position: static;
+    max-height: none;
+    opacity: 1;
     z-index: auto;
   }
 `;
 
 const BurgerMenu = styled.div`
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  margin-left: auto;  // Aligns to the right
-  position: relative;
-  width: 30px; /* Adjust width as needed */
-  height: 20px; /* Adjust height as needed */
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    width: 25px;
-    height: 2px;
-    background: white;
-    transition: 0.3s;
-    left: 0;
-  }
-
-  &::before {
-    top: 0; /* Top line */
-  }
-
-  &::after {
-    bottom: 0; /* Bottom line */
-  }
-
-  & > div {
-    position: absolute;
-    width: 25px;
-    height: 2px;
-    background: white;
-    transition: 0.3s;
-    top: 50%; /* Center line */
-    transform: translateY(-50%);
-  }
-
+  display: none;
+  
   @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
     display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: auto;  /* Aligns to the right */
+    position: relative;
+    width: 30px; /* Adjust width as needed */
+    height: 20px; /* Adjust height as needed */
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 2px;
+      background: white;
+      transition: 0.3s;
+      left: 0;
+    }
+
+    &::before {
+      top: 0; /* Top line */
+    }
+
+    &::after {
+      bottom: 0; /* Bottom line */
+    }
+
+    & > div {
+      position: absolute;
+      width: 25px;
+      height: 2px;
+      background: white;
+      transition: 0.3s;
+      top: 50%; /* Center line */
+      transform: translateY(-50%);
+    }
   }
 `;
 
