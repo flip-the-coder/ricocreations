@@ -1,99 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
 
-const Row = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-`;
-
-const Column = styled.div`
-    flex: 1;
-    padding: 10px;
-`;
-
-const CustomHeading = styled.h1`
-    font-size: 70px;
-    font-family: 'h1';
-    font-weight: 500;
-`;
-
-const ColumnText = styled.p`
-    margin: 10px 0;
-`;
-
-const Separator = styled.hr`
-    width: 100%;
-    border: none;
-    border-top: 1px solid #ddd;
-    margin: 10px 0;
-`;
-
-const SocialIcons = styled.div`
-    display: flex;
-    justify-content: center;
-    gap: 0.2em;
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
-`;
-
-const SocialIcon = styled.a`
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    padding: 5px;
-`;
-
-const FullWidthImage = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-`;
-
-const PartnersSection = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #f7f7f7;
-    padding: 20px 0;
-`;
-
-const PartnerColumn = styled.div`
-    flex: 1;
-    text-align: center;
-    background-color: #f7f7f7;
-    padding: 50px;
-    &.image-bg {
-        background-image: url('your-image-url');
-        background-position: 100%;
-        background-repeat: no-repeat;
-    }
-`;
-
-const PartnerHeading = styled.h2`
-    font-family: 'h1';
-`;
-
-const PartnerText = styled.p`
-    max-width: 70%;
-    margin: auto;
-`;
-
-const IconBox = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    i {
-        font-size: 1rem;
-    }
-`;
-
-// Main Component
 const AboutMe = () => (
     <div>
         <Row>
@@ -122,20 +29,19 @@ const AboutMe = () => (
                 </SocialIcons>
             </Column>
             <Column>
-                <img src="your-image-url" alt="Jessica Rico" />
+                <img src="your-image-url" alt="Jessica Rico" style={{ maxWidth: '100%' }} />
             </Column>
         </Row>
 
         <Row>
             <Column>
-                <img src="your-image-url" alt="Rico Creations" className="image-bg-grey" />
+                <img src="your-image-url" alt="Rico Creations" className="image-bg-grey" style={{ maxWidth: '100%' }} />
             </Column>
             <Column>
-                <CustomHeading>About, Rico Creations</CustomHeading>
-                <ColumnText>-Creator of Rico Creations</ColumnText>
+                <CustomHeading>About Rico Creations</CustomHeading>
                 <ColumnText>
-                    Rico creations is a personal brand that specializes in CBD-infused products. Based in Austin, TX,
-                    Rico creations is the exclusive retailer of Remedy + products in the city.
+                    Rico Creations is a personal brand that specializes in CBD-infused products. Based in Austin, TX,
+                    Rico Creations is the exclusive retailer of Remedy + products in the city.
                 </ColumnText>
                 <ColumnText>
                     CBD has been shown to have a wide variety of potential health benefits, and Rico's creations offer a
@@ -165,7 +71,7 @@ const AboutMe = () => (
         </Row>
 
         <FullWidthImage>
-            <img src="your-image-url" alt="Full Width" />
+            <img src="your-image-url" alt="Full Width" style={{ maxWidth: '100%' }} />
         </FullWidthImage>
 
         <PartnersSection>
@@ -175,7 +81,6 @@ const AboutMe = () => (
                 <PartnerText>Find Rico Creations CBD used at the following ATX locations:</PartnerText>
                 <Separator />
                 <IconBox>
-                    <i className="fas fa-map-marker-alt"></i>
                     <span>
                         Austin Daiquiri Factory
                         <br />
@@ -184,7 +89,6 @@ const AboutMe = () => (
                 </IconBox>
                 <Separator />
                 <IconBox>
-                    <i className="fas fa-map-marker-alt"></i>
                     <span>
                         Cantina 512
                         <br />
@@ -193,7 +97,6 @@ const AboutMe = () => (
                 </IconBox>
                 <Separator />
                 <IconBox>
-                    <i className="fas fa-map-marker-alt"></i>
                     <span>
                         El Mango Feliz
                         <br />
@@ -207,3 +110,138 @@ const AboutMe = () => (
 );
 
 export default AboutMe;
+
+
+const Row = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+    }
+`;
+
+const Column = styled.div`
+    flex: 1;
+    padding: 10px;
+    @media (max-width: 768px) {
+        width: 100%;
+        text-align: center;
+    }
+`;
+
+const CustomHeading = styled.h1`
+    font-size: 70px;
+    font-family: 'h1';
+    font-weight: 500;
+    @media (max-width: 768px) {
+        font-size: 40px;
+    }
+`;
+
+const ColumnText = styled.p`
+    margin: 10px 0;
+    @media (max-width: 768px) {
+        font-size: 16px;
+    }
+`;
+
+const Separator = styled.hr`
+    width: 100%;
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+`;
+
+const SocialIcons = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 0.2em;
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+    @media (max-width: 768px) {
+        gap: 0.5em;
+    }
+`;
+
+const SocialIcon = styled.a`
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    padding: 5px;
+    @media (max-width: 768px) {
+        padding: 8px;
+    }
+`;
+
+const FullWidthImage = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+`;
+
+const PartnersSection = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #f7f7f7;
+    padding: 20px 0;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 300px; /* Adjust this value based on your design */
+    @media (max-width: 768px) {
+        padding: 10px 0;
+        min-height: 200px; /* Adjust for mobile */
+    }
+`;
+
+const PartnerColumn = styled.div`
+    flex: 1;
+    text-align: center;
+    background-color: #f7f7f7;
+    padding: 50px;
+    @media (max-width: 768px) {
+        padding: 20px;
+    }
+    &.image-bg {
+        background-image: url('your-image-url');
+        background-position: 100%;
+        background-repeat: no-repeat;
+    }
+`;
+
+const PartnerHeading = styled.h2`
+    font-family: 'h1';
+    @media (max-width: 768px) {
+        font-size: 24px;
+    }
+`;
+
+const PartnerText = styled.p`
+    max-width: 70%;
+    margin: auto;
+    @media (max-width: 768px) {
+        max-width: 90%;
+        font-size: 14px;
+    }
+`;
+
+const IconBox = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    i {
+        font-size: 1rem;
+    }
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+`;

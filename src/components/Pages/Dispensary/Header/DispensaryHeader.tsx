@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { LogoHeight, colors, fontSizes, fonts } from '../../../../SharedThemes';
@@ -6,6 +6,7 @@ import { MEDIUM_DEVICE_WIDTH } from '../../../../utils/browserUtils';
 
 const DispensaryHeader: React.FC = () => {
   const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const pages = [
     { name: 'Home', path: '/home' },
@@ -14,15 +15,25 @@ const DispensaryHeader: React.FC = () => {
     { name: 'Contact', path: '/contact' }
   ];
 
+  const handleLinkClick = () => {
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  };
+
   return (
     <NavigationBar>
       <LogoWrapper>
         <img src={''} alt="Update Logo" />
       </LogoWrapper>
-      <LinksContainer>
+      <BurgerMenu onClick={() => setIsMenuOpen(!isMenuOpen)} />
+      <LinksContainer isOpen={isMenuOpen}>
         {pages.map((page) => (
-          <LinkOption key={page.path} className={location.pathname === page.path ? 'active' : ''}>
-            <NavLink to={page.path}>
+          <LinkOption
+            key={page.path}
+            className={location.pathname === page.path ? 'active' : ''}
+          >
+            <NavLink to={page.path} onClick={handleLinkClick}>
               {page.name}
             </NavLink>
           </LinkOption>
@@ -45,6 +56,10 @@ const NavigationBar = styled.header`
   box-shadow: 0px 3px 4px 0px #00000024, 0px 3px 11px -2px #00000003;
   height: ${headerHeight - 1}px;
   margin-bottom: 6px;
+
+  @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
+    position: relative;
+  }
 `;
 
 const LogoWrapper = styled.div`
@@ -66,16 +81,81 @@ const LogoWrapper = styled.div`
   }
 `;
 
-const LinksContainer = styled.ul`
+const LinksContainer = styled.ul<{ isOpen: boolean }>`
   height: 100%;
   display: flex;
   align-items: center;
   font: normal normal 400 ${fontSizes.md} ${fonts.primary};
-  margin-right: 1rem;
-  flex: 2 auto;
-  justify-content: start;
-  list-style: none;
+  margin: 0;
   padding: 0;
+  list-style: none;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  overflow: hidden;
+  max-height: ${({ isOpen }) => (isOpen ? '500px' : '0')}; /* Adjust height if needed */
+  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)}; /* Fade in/out based on menu state */
+  
+  @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
+    flex-direction: column;
+    background: ${colors.navBar};
+    position: fixed;
+    top: ${headerHeight}px; /* Adjust based on header height */
+    right: 0;
+    width: 100vw;
+    border-left: 1px solid grey;
+    padding: 1rem;
+    z-index: 1000; /* Ensure the menu appears above other content */
+  }
+
+  @media only screen and (min-width: ${MEDIUM_DEVICE_WIDTH + 1}px) {
+    max-height: none;
+    display: flex;
+    flex-direction: row;
+    position: static;
+    z-index: auto;
+  }
+`;
+
+const BurgerMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: auto;  // Aligns to the right
+  position: relative;
+  width: 30px; /* Adjust width as needed */
+  height: 20px; /* Adjust height as needed */
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background: white;
+    transition: 0.3s;
+    left: 0;
+  }
+
+  &::before {
+    top: 0; /* Top line */
+  }
+
+  &::after {
+    bottom: 0; /* Bottom line */
+  }
+
+  & > div {
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background: white;
+    transition: 0.3s;
+    top: 50%; /* Center line */
+    transform: translateY(-50%);
+  }
+
+  @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
+    display: flex;
+  }
 `;
 
 const LinkOption = styled.li`
@@ -85,7 +165,7 @@ const LinkOption = styled.li`
   text-decoration: none;
   transition: color 0.15s;
   letter-spacing: 1.28px;
-  margin-left: 40px;
+  margin-left: 20px;
   text-align: center;
   opacity: 1;
 
@@ -107,5 +187,10 @@ const LinkOption = styled.li`
 
   &.active {
     box-shadow: inset 0 -4px 0 white;
+  }
+
+  @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
+    margin-left: 0;
+    padding: 15px;
   }
 `;
