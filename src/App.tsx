@@ -8,7 +8,7 @@ import Loader from './components/Loader';
 import ChangeAnswerSpinner from './components/UI/ChangeAnswerSpinner';
 import { useStores } from './hooks/useStores';
 import { DEFAULT_THEME } from './stores/ThemeStore';
-import AboutMe from './components/Pages/AboutMe';
+import AboutMe from './components/Pages/AboutMe/AboutMe';
 import DispensaryRoutes from './components/Pages/Dispensary/DispensaryRoutes';
 
 // Lazy-loaded pages

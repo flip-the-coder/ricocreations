@@ -29,7 +29,7 @@ const AboutMe = () => (
                 </SocialIcons>
             </Column>
             <Column>
-                <img src="your-image-url" alt="Jessica Rico" style={{ maxWidth: '100%' }} />
+                <img src="https://www.instagram.com/p/C9YOAkHpQ9a/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" alt="Jessica Rico" style={{ maxWidth: '100%' }} />
             </Column>
         </Row>
 
