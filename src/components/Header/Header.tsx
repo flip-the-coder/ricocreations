@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { LogoHeight, colors, fontSizes, fonts } from '../../../../SharedThemes';
-import { MEDIUM_DEVICE_WIDTH } from '../../../../utils/browserUtils';
+import { LogoHeight, colors, fontSizes, fonts } from '../../SharedThemes';
+import { MEDIUM_DEVICE_WIDTH } from '../../utils/browserUtils';
 
-const DispensaryHeader: React.FC = () => {
+const Header: React.FC = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const pages = [
     { name: 'Home', path: '/home' },
     { name: 'Dispensary', path: '/dispensary' },
-    { name: 'About', path: '/aboutMe' },
+    // { name: 'About', path: '/aboutMe' },
+    { name: 'Events', path: '/events' },
     { name: 'Contact', path: '/contact' }
   ];
 
@@ -43,7 +44,7 @@ const DispensaryHeader: React.FC = () => {
   );
 };
 
-export default DispensaryHeader;
+export default Header;
 
 const headerHeight = 50;
 

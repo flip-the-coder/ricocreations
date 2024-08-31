@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MEDIUM_DEVICE_WIDTH } from '../../../utils/browserUtils';
-import DispensaryHeader from './Header/DispensaryHeader';
+import { MEDIUM_DEVICE_WIDTH } from '../../utils/browserUtils';
+import Header from '../Header/Header';
 
-const DispensaryLayout = ({ children }) => {
+const Layout = ({ children }) => {
     return (
         <LayoutWrapper>
-            <DispensaryHeader />
+            <Header />
             <MyHomesContent>{children}</MyHomesContent>
         </LayoutWrapper>
     );
 };
 
-export default DispensaryLayout;
+export default Layout;
 
 const LayoutWrapper = styled.div`
     display: flex;

@@ -27,6 +27,10 @@ export function iOS(): boolean {
     );
 }
 
+export const isIphone = (): boolean => {
+    return /iPhone|iPad|iPod/.test(navigator.userAgent) && !/Windows Phone/.test(navigator.userAgent);
+  };
+  
 export function android(): boolean {
     return (
         ['Android'].includes(navigator.platform) ||

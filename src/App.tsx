@@ -8,13 +8,13 @@ import Loader from './components/Loader';
 import ChangeAnswerSpinner from './components/UI/ChangeAnswerSpinner';
 import { useStores } from './hooks/useStores';
 import { DEFAULT_THEME } from './stores/ThemeStore';
-import AboutMe from './components/Pages/AboutMe/AboutMe';
-import DispensaryRoutes from './components/Pages/Dispensary/DispensaryRoutes';
+import DispensaryRoutes from './components/Pages/DispensaryRoutes';
 
 // Lazy-loaded pages
 const Home = lazy(() => import('./components/Pages/Home'));
 const Dispensary = lazy(() => import('./components/Pages/Dispensary/Dispensary'));
 const ContactUs = lazy(() => import('./components/Pages/ContactUs/ContactUs'));
+const Events = lazy(() => import('./components/Pages/Events/Events'));
 
 const InitialReactPage = () => {
     const { themeStore, intlStore } = useStores();
@@ -28,7 +28,7 @@ const InitialReactPage = () => {
                     <Suspense fallback={<ChangeAnswerSpinner isVisible />}>
                         <Routes>
                             <Route path="/dispensary" element={<DispensaryRoutes><Dispensary /></DispensaryRoutes>} />
-                            <Route path="/aboutMe" element={<DispensaryRoutes><AboutMe /></DispensaryRoutes>} />
+                            <Route path="/events" element={<DispensaryRoutes><Events /></DispensaryRoutes>} />
                             <Route path="/contact" element={<DispensaryRoutes><ContactUs /></DispensaryRoutes>} />
                             <Route path="*" element={<DispensaryRoutes><Home /></DispensaryRoutes>} />
                         </Routes>

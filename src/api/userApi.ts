@@ -1,8 +1,6 @@
 import { AxiosPromise } from 'axios';
-import { Role } from '../models/Roles';
 import { User } from '../models/User';
 import { Transport } from './Transport';
-import { Company } from '../models/Company';
 
 const USER_API: string = '/user/api';
 
@@ -135,11 +133,6 @@ const users = {
     }
 };
 
-const roles = {
-    getExternalAllowedRoles: (): AxiosPromise<Role[]> => {
-        return Transport.get(`${USER_API}/roles/externalallowed`, Role);
-    }
-};
 
 const clientCredentials = {
     getToken: (clientKey: string, clientSecret: string): AxiosPromise<string> => {
@@ -150,19 +143,11 @@ const clientCredentials = {
     }
 };
 
-const companies = {
-    getCompany: (companyId: string): AxiosPromise<Company> => {
-        return Transport.get(`${USER_API}/companies/${companyId}`);
-    }
-};
-
 // eslint-disable-next-line
 export default {
     auth,
     account,
     users,
-    roles,
     userRegistrationToken,
     clientCredentials,
-    companies
 };
