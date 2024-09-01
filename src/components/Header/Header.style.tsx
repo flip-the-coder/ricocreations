@@ -11,13 +11,19 @@ const NavigationBar = styled.header`
   justify-content: space-between;
   background: ${colors.navBar};
   box-shadow: 0px 3px 4px 0px #00000024, 0px 3px 11px -2px #00000003;
-  height: ${headerHeight - 1}px;
+  height: ${headerHeight}px;
   margin-bottom: 6px;
-  position: relative;
+  position: sticky; 
+  top: 0;  
+  z-index: 1000; 
   box-sizing: border-box; /* Ensures consistent box model */
 
   @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
-    position: relative;
+    position: fixed; 
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1000; 
   }
 `;
 
