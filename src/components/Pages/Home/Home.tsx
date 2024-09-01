@@ -25,7 +25,9 @@ const Home: React.FC = () => {
           />
           {filteredProducts.map((product: Product) => (
               <ProductContainer key={product.id}>
-                  <Gallery photos={product.photos} />
+                  <ImageWrapper>
+                      <Gallery photos={product.photos} />
+                  </ImageWrapper>
                   <h2>{product.name}</h2>
                   <Description>{product.description}</Description>
                   <p>Price: ${product.price.toFixed(2)}</p>
@@ -35,9 +37,7 @@ const Home: React.FC = () => {
   );
 };
 
-
 export default observer(Home);
-
 
 const MainContainer = styled.div`
     display: flex;
@@ -61,6 +61,19 @@ const ProductContainer = styled.div`
     @media (max-width: 767px) {
         max-width: calc(50% - 10px);
         margin: 5px;
+    }
+`;
+
+const ImageWrapper = styled.div`
+    width: 100%;
+    height: auto;
+
+    @media (max-width: 767px) {
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
     }
 `;
 
