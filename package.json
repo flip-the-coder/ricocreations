@@ -30,13 +30,14 @@
         "yup": "^0.31.1"
     },
     "scripts": {
-        "start": "set PORT=3005 && react-app-rewired start",
-        "build": "react-app-rewired --max-old-space-size=4096 build",
-        "test": "react-app-rewired test",
+        "start": "cross-env PORT=3005 react-app-rewired start",
+        "build": "cross-env react-app-rewired --max-old-space-size=4096 build",
+        "test": "cross-env react-app-rewired test",
         "eject": "react-scripts eject",
         "format": "prettier --write src/**/*.{js,jsx,ts,tsx}",
         "lint": "eslint --fix src/**/*.{js,jsx,ts,tsx}",
-        "git": "node commit.js"
+        "commit": "node commit.js",
+        "deploy": "node deploy.js"
     },
     "eslintConfig": {
         "extends": [

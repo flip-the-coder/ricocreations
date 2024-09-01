@@ -45,7 +45,7 @@ const Events: React.FC = () => {
         );
     };
 
-    const generateLinkContainer = (event: VenueEvent): JSX.Element => {
+    const generateEventLinks = (event: VenueEvent): JSX.Element => {
         const { eventUrl, ticketUrl } = event.eventUrls;
 
         return (
@@ -93,7 +93,7 @@ const Events: React.FC = () => {
 
                             <p>{event.description}</p>
                             
-                            {generateLinkContainer(event)}
+                            {generateEventLinks(event)}
                             <MapLinks address={event.address} locationName={event.locationName} />
                             {generateSocialLinks(event.eventUrls.socialLinks)}
                         </EventDetails>

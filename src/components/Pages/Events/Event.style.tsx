@@ -10,10 +10,9 @@ const EventContainer = styled.div`
   margin: 10px 0;
   padding: 0;
   border-radius: 5px;
-  cursor: pointer;
   overflow: hidden;
   box-sizing: border-box;
-
+  
   @media (max-width: 768px) {
     margin: 5px 0;
   }
@@ -70,6 +69,7 @@ const EventName = styled.div`
 
 const EventDetails = styled.div`
   margin-top: 10px;
+  text-align: center;
 
   @media (max-width: 768px) {
     margin-top: 5px;
@@ -79,10 +79,13 @@ const EventDetails = styled.div`
 const WebsiteContainer = styled.div`
   gap: 5px;
   padding: 10px 0;
+  text-align: center;
 
   a {
     text-decoration: none;
     color: blue;
+    cursor: pointer;
+    font-size: 1em;
   }
 
   @media (max-width: 768px) {
@@ -97,10 +100,10 @@ const WebsiteContainer = styled.div`
 const SocialLinksContainer = styled.div`
   display: flex;
   gap: 10px;
-  padding: 10px 0px;
-
+  padding: 10px 0;
+  justify-content: center;
+  
   @media (max-width: 768px) {
-    flex-wrap: wrap;
     gap: 5px;
   }
 
@@ -109,6 +112,7 @@ const SocialLinksContainer = styled.div`
     color: inherit;
     text-decoration: none;
     transition: color 0.3s ease;
+    cursor: pointer;
   }
 
   a:hover {
