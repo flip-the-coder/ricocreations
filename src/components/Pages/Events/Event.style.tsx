@@ -12,7 +12,7 @@ const EventContainer = styled.div`
   border-radius: 5px;
   overflow: hidden;
   box-sizing: border-box;
-  
+
   @media (max-width: 768px) {
     margin: 5px 0;
   }
@@ -40,6 +40,10 @@ const EventHeader = styled.div<EventHeaderProps>`
   ${props => !props.imageUrl && `
     height: auto;
     padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   `}
 
   @media (max-width: 768px) {
@@ -56,7 +60,7 @@ const EventHeader = styled.div<EventHeaderProps>`
 const EventName = styled.div`
   font-weight: bold;
   font-size: 1.5em;
-  text-align: center;
+  color: #333;
 
   @media (max-width: 768px) {
     font-size: 1.25em;
@@ -71,8 +75,8 @@ const EventDetails = styled.div`
   margin-top: 10px;
   text-align: center;
 
-  @media (max-width: 768px) {
-    margin-top: 5px;
+  @media (min-width: 768px) {
+    padding-top: 20px;
   }
 `;
 
@@ -105,6 +109,10 @@ const SocialLinksContainer = styled.div`
   
   @media (max-width: 768px) {
     gap: 5px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 4px;
   }
 
   a {

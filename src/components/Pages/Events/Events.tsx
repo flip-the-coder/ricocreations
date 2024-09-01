@@ -9,12 +9,21 @@ const Events: React.FC = () => {
     const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
     const { EventContainer, EventHeader, EventName, EventDetails, WebsiteContainer, SocialLinksContainer } = EventStyles;
 
+    // Get current date
+    const currentDate = new Date();
+
+    // Filter upcoming events to exclude past events
+    const filteredEvents = UpcomingEvents.filter(event => {
+        const eventDate = new Date(event.ISODateOfEvent);
+        return eventDate >= currentDate;
+    });
+
     useEffect(() => {
-        UpcomingEvents.length === 1 && setExpandedEvent(0);
-    }, []);
+        filteredEvents.length === 1 && setExpandedEvent(0);
+    }, [filteredEvents]);
 
     const toggleExpand = (index: number) => {
-        UpcomingEvents.length > 1 && setExpandedEvent(expandedEvent === index ? null : index)
+        filteredEvents.length > 1 && setExpandedEvent(expandedEvent === index ? null : index);
     };
 
     const generateSocialLinks = (socialLinks: SocialLinks): JSX.Element => {
@@ -66,19 +75,19 @@ const Events: React.FC = () => {
 
     return (
         <div>
-            {UpcomingEvents.map((event, index) => (
+            {filteredEvents.map((event, index) => (
                 <EventContainer
                     key={index}
                     style={{
-                        height: UpcomingEvents.length === 1 && expandedEvent === index ? '100vh' : 'auto',
-                        overflow: UpcomingEvents.length === 1 ? 'hidden' : 'auto',
+                        height: filteredEvents.length === 1 && expandedEvent === index ? '100vh' : 'auto',
+                        overflow: filteredEvents.length === 1 ? 'hidden' : 'auto',
                     }}
                 >
                     <EventHeader
                         imageUrl={event.eventUrls.imageUrl}
                         onClick={() => toggleExpand(index)}
                         style={{
-                            cursor: UpcomingEvents.length === 1 ? 'default' : 'pointer',
+                            cursor: filteredEvents.length === 1 ? 'default' : 'pointer',
                         }}
                     >
                         {event.eventUrls.imageUrl ? (
@@ -90,9 +99,7 @@ const Events: React.FC = () => {
                     {expandedEvent === index && (
                         <EventDetails>
                             <EventCountdown dateOfEvent={event.ISODateOfEvent} message={event.countdownEventMessage} spanOfEvent={3} />
-
                             <p>{event.description}</p>
-                            
                             {generateEventLinks(event)}
                             <MapLinks address={event.address} locationName={event.locationName} />
                             {generateSocialLinks(event.eventUrls.socialLinks)}
