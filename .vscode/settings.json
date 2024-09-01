@@ -1,6 +1,30 @@
 {
+    "files.associations": {
+        "*.jsx": "javascriptreact",
+        "*.svg": "html"
+    },
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "cSpell.words": [
-        "omnibuilder",
-        "ricocreations"
-    ]
+        "Bldr",
+        "configurator",
+        "exline",
+        "exquote",
+        "formik",
+        "Homebuyer",
+        "jsog",
+        "msal",
+        "omni",
+        "pannellum",
+        "panzoom",
+        "veridian",
+        "visualizable"
+    ],
+    "editor.formatOnSave": true,
+    "prettier.requireConfig": true
 }
