@@ -79,7 +79,6 @@ const Events: React.FC = () => {
                 <EventContainer
                     key={index}
                     style={{
-                        height: filteredEvents.length === 1 && expandedEvent === index ? '100vh' : 'auto',
                         overflow: filteredEvents.length === 1 ? 'hidden' : 'auto',
                     }}
                 >
