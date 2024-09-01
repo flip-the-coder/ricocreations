@@ -29,10 +29,12 @@ const MyHomesContent = styled.div`
     overflow-y: auto;
     padding: 10px;
     margin-top: ${headerHeight}px;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
 
     @media (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
         padding: 10px;
-        box-sizing: border-box;
         margin-top: ${headerHeight}px;
     }
 `;

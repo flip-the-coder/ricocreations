@@ -7,7 +7,7 @@ import { HomeStyles } from './Home.style';
 
 const Home: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<ProductType>(ProductType.ALL);
-    const { MainContainer, ProductContainer, ImagesContainer, Description, ProductList } = HomeStyles;
+    const { MainContainer, ProductContainer, Description, ProductList, ImagesContainer } = HomeStyles;
 
     const handleCategoryChange = (category: ProductType) => {
         setSelectedCategory(category);

@@ -10,21 +10,18 @@ interface CategoryFilterProps {
 
 const Container = styled.div`
     display: flex;
-    overflow-x: auto;
+    overflow-x: auto; /* Enable horizontal scrolling */
     padding: 10px;
     scroll-behavior: smooth;
+    white-space: nowrap; /* Prevents line wrapping of child elements */
 
     &::-webkit-scrollbar {
-        display: none;
-    }
-
-    @media (max-width: 768px) {
-        padding: 8px;
+        display: none; /* Hide scrollbar for a cleaner look */
     }
 `;
 
 const FilterButton = styled.button<{ isSelected: boolean }>`
-    display: flex;
+    display: flex; /* Ensure buttons are inline within the flex container */
     flex-direction: column;
     align-items: center;
     border: none;
@@ -36,8 +33,8 @@ const FilterButton = styled.button<{ isSelected: boolean }>`
     transition: background 0.3s, font-weight 0.3s;
 
     img {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
     }
 
     &:hover {
@@ -50,26 +47,6 @@ const FilterButton = styled.button<{ isSelected: boolean }>`
         font-weight: bold;
         background: #e0e0e0;
     `}
-
-    @media (max-width: 768px) {
-        padding: 8px;
-        margin-right: 8px;
-
-        img {
-            width: 40px;
-            height: 40px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        padding: 6px;
-        margin-right: 6px;
-
-        img {
-            width: 30px;
-            height: 30px;
-        }
-    }
 `;
 
 const CategoryFilter: React.FC<CategoryFilterProps> = ({ filterOptions, selectedCategory, onCategoryChange }) => {
