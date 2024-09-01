@@ -17,6 +17,10 @@ const Container = styled.div`
     &::-webkit-scrollbar {
         display: none;
     }
+
+    @media (max-width: 768px) {
+        padding: 8px;
+    }
 `;
 
 const FilterButton = styled.button<{ isSelected: boolean }>`
@@ -32,29 +36,47 @@ const FilterButton = styled.button<{ isSelected: boolean }>`
     transition: background 0.3s, font-weight 0.3s;
 
     img {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
     }
 
     &:hover {
         background: #f0f0f0;
     }
 
-    ${({ isSelected }) => isSelected && `
+    ${({ isSelected }) =>
+        isSelected &&
+        `
         font-weight: bold;
         background: #e0e0e0;
     `}
+
+    @media (max-width: 768px) {
+        padding: 8px;
+        margin-right: 8px;
+
+        img {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 6px;
+        margin-right: 6px;
+
+        img {
+            width: 30px;
+            height: 30px;
+        }
+    }
 `;
 
 const CategoryFilter: React.FC<CategoryFilterProps> = ({ filterOptions, selectedCategory, onCategoryChange }) => {
     return (
         <Container>
             {filterOptions.map(({ photo, type }) => (
-                <FilterButton
-                    key={type}
-                    isSelected={selectedCategory === type}
-                    onClick={() => onCategoryChange(type)}
-                >
+                <FilterButton key={type} isSelected={selectedCategory === type} onClick={() => onCategoryChange(type)}>
                     <img src={photo} alt={type} />
                     {type}
                 </FilterButton>

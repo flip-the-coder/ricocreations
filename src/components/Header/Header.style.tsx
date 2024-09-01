@@ -12,7 +12,6 @@ const NavigationBar = styled.header`
     background: ${colors.navBar};
     box-shadow: 0px 3px 4px 0px #00000024, 0px 3px 11px -2px #00000003;
     height: ${headerHeight}px;
-    margin-bottom: 6px;
     position: sticky;
     top: 0;
     z-index: 1000;

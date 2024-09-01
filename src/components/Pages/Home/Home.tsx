@@ -1,14 +1,13 @@
 import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 import Gallery from '../../ImageGallery/Gallery';
-import styled from 'styled-components';
 import { Product, products, ProductType, FilterOptions } from '../../../models/Product';
 import CategoryFilter from './CategoryFilter/CategoryFilter';
 import { HomeStyles } from './Home.style';
 
 const Home: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<ProductType>(ProductType.ALL);
-    const { MainContainer, ProductContainer, ImagesContainer, Description } = HomeStyles;
+    const { MainContainer, ProductContainer, ImagesContainer, Description, ProductList } = HomeStyles;
 
     const handleCategoryChange = (category: ProductType) => {
         setSelectedCategory(category);
@@ -26,6 +25,7 @@ const Home: React.FC = () => {
                 selectedCategory={selectedCategory}
                 onCategoryChange={handleCategoryChange}
             />
+            <ProductList>
                 {filteredProducts.map((product: Product) => (
                     <ProductContainer key={product.id}>
                         <ImagesContainer>
@@ -36,6 +36,7 @@ const Home: React.FC = () => {
                         <p>Price: ${product.price.toFixed(2)}</p>
                     </ProductContainer>
                 ))}
+            </ProductList>
         </MainContainer>
     );
 };

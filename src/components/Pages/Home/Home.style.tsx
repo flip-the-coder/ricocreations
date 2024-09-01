@@ -1,39 +1,45 @@
 import styled from 'styled-components';
-import { fontSizes } from '../../../SharedThemes';
-import { MEDIUM_DEVICE_WIDTH, SMALL_DEVICE_WIDTH } from '../../../utils/browserUtils';
+
 export const CARD_PADDING = '0.25rem'; // Fixed to be a string
 
 const DESCRIPTION_MAX_LINES = 3;
-const MainContainer = styled.div`
-    display: flex;
 
-    flex-direction: column;
-    align-items: center;
+const MainContainer = styled.div``;
+
+const ProductList = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row on desktop */
+    gap: 20px; /* Adjust as needed for spacing between cards */
+
+    @media (max-width: 767px) {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row on tablet */
+    }
+
+    @media (max-width: 480px) {
+        grid-template-columns: 1fr; /* 1 card per row on mobile */
+    }
 `;
 
 const ProductContainer = styled.div`
-    margin: 5px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    max-width: calc(33.333% - 10px);
     text-align: center;
     overflow: hidden;
+    padding: ${CARD_PADDING};
+    box-sizing: border-box;
 
     @media (max-width: 767px) {
-        max-width: calc(50% - 20px);
-        margin: 10px;
+        max-width: 100%;
     }
 
     @media (max-width: 480px) {
         max-width: 100%;
-        margin: 5px;
     }
 `;
 
 const ImagesContainer = styled.div`
     overflow: hidden;
     border-radius: 0.5rem;
-    display: flex;
 
     img {
         object-fit: cover;
@@ -67,5 +73,6 @@ export const HomeStyles = {
     MainContainer,
     ProductContainer,
     ImagesContainer,
-    Description
+    Description,
+    ProductList,
 };
