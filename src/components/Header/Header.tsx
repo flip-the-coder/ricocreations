@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import {HeaderStyles} from './Header.style';
+import { HeaderStyles } from './Header.style';
 import { isMobile } from '../../utils/browserUtils';
-
 
 const Header: React.FC = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const {    NavigationBar,
+  const {
+    NavigationBar,
     LinkOption,
-    LogoText, LinksContainer, BurgerMenu, LogoImage, LogoWrapper} = HeaderStyles
+    LogoText,
+    LinksContainer,
+    BurgerMenu,
+    LogoImage,
+    LogoWrapper,
+  } = HeaderStyles;
 
   const pages = [
     { name: 'Home', path: '/home' },
     { name: 'Dispensary', path: '/dispensary' },
     // { name: 'About', path: '/aboutMe' },
     { name: 'Events', path: '/events' },
-    { name: 'Contact', path: '/contact' }
+    { name: 'Contact', path: '/contact' },
   ];
 
   const handleLinkClick = () => {
@@ -29,9 +34,9 @@ const Header: React.FC = () => {
   return (
     <NavigationBar>
       <LogoWrapper>
-        <LogoImage src='' alt="Rico Creations" />
+        <LogoImage src='' alt='Rico Creations' />
       </LogoWrapper>
-      {!isMobile && <LogoText>Rico Creations</LogoText> } 
+      {isMobile() && <LogoText>Rico Creations</LogoText>}
       <BurgerMenu onClick={() => setIsMenuOpen(!isMenuOpen)} />
       <LinksContainer isOpen={isMenuOpen}>
         {pages.map((page) => (
