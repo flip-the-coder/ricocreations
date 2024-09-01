@@ -12,16 +12,6 @@ export interface Filter {
     type: ProductType;
 }
 
-// Initialize `Categories` with `Filter` objects including representative photo URLs
-export const FilterOptions: Filter[] = [
-    { photo: 'https://via.placeholder.com/150?text=All', type: ProductType.ALL },
-    { photo: 'https://via.placeholder.com/150?text=Smokable', type: ProductType.SMOKABLE },
-    { photo: 'https://via.placeholder.com/150?text=Topical', type: ProductType.TOPICAL },
-    { photo: 'https://via.placeholder.com/150?text=PETS', type: ProductType.PETS },
-    { photo: 'https://via.placeholder.com/150?text=Edibles', type: ProductType.EDIBLES },
-    { photo: 'https://via.placeholder.com/150?text=Accessories', type: ProductType.ACCESSORIES }
-];
-
 export interface Product {
     id: string;
     name: string;
@@ -31,13 +21,23 @@ export interface Product {
     photos: string[];
 }
 
+
+export const FilterOptions: Filter[] = [
+    { photo: 'http://images.squarespace-cdn.com/content/v1/5c72d15fc46f6d147ea478e5/1570575851469-YBAVZ06F9FZRYOSPMMG9/yasmin.jpg', type: ProductType.ALL },
+    { photo: 'http://images.squarespace-cdn.com/content/v1/5c72d15fc46f6d147ea478e5/1570575851005-O22SCLM2200NXLL0COL6/LOVELY+LAVENDER.jpg', type: ProductType.SMOKABLE },
+    { photo: 'http://images.squarespace-cdn.com/content/v1/5c72d15fc46f6d147ea478e5/1570575849912-ZY71UJ5LWTNRBTZKZR8J/lolita.jpg', type: ProductType.TOPICAL },
+    { photo: 'http://images.squarespace-cdn.com/content/v1/5c72d15fc46f6d147ea478e5/1570575848050-XIMEV1ZFE18J155X2CN9/CITRUS+ISLAND.jpg', type: ProductType.PETS },
+    { photo: 'http://images.squarespace-cdn.com/content/v1/5c72d15fc46f6d147ea478e5/1570575851469-YBAVZ06F9FZRYOSPMMG9/yasmin.jpg', type: ProductType.EDIBLES }, // Reusing one of the existing photos
+    { photo: 'http://images.squarespace-cdn.com/content/v1/5c72d15fc46f6d147ea478e5/1570575851005-O22SCLM2200NXLL0COL6/LOVELY+LAVENDER.jpg', type: ProductType.ACCESSORIES } // Reusing another existing photo
+];
+
 export const products: Product[] = [
     {
         id: "1",
         name: "Bath Bomb",
         price: 19.99,
         description: "A soothing bath bomb with essential oils to provide a relaxing experience.",
-        type: [ProductType.TOPICAL],
+        type: [ProductType.TOPICAL, ProductType.SMOKABLE],
         photos: [
             "http://images.squarespace-cdn.com/content/v1/5c72d15fc46f6d147ea478e5/1570575851469-YBAVZ06F9FZRYOSPMMG9/yasmin.jpg",
             "http://images.squarespace-cdn.com/content/v1/5c72d15fc46f6d147ea478e5/1570575851005-O22SCLM2200NXLL0COL6/LOVELY+LAVENDER.jpg",

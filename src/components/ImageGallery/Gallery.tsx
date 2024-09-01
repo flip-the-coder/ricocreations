@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSwipeable } from 'react-swipeable';
 import styled from 'styled-components';
 
 const CarouselContainer = styled.div`
@@ -102,8 +103,14 @@ const Gallery: React.FC<GalleryProps> = ({ photos }) => {
     setCurrentIndex((prevIndex) => (prevIndex === photos.length - 1 ? 0 : prevIndex + 1));
   };
 
+  const handlers = useSwipeable({
+    onSwipedLeft: handleNextClick,
+    onSwipedRight: handlePrevClick,
+    trackMouse: true, // Enables swipe detection with mouse events as well
+  });
+
   return (
-    <CarouselContainer>
+    <CarouselContainer {...handlers}>
       <LeftButton onClick={handlePrevClick} disabled={photos.length <= 1}>
         &#8249;
       </LeftButton>

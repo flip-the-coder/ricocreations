@@ -27,6 +27,7 @@
         "react-select": "^5.7.3",
         "react-slick": "^0.29.0",
         "react-spring": "^8.0.27",
+        "react-swipeable": "^7.0.1",
         "styled-components": "^5.3.11",
         "yup": "^0.31.1"
     },

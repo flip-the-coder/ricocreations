@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.ca2d7488.css",
-    "main.js": "/static/js/main.90e6bc5c.js",
-    "static/js/669.7315b5c9.chunk.js": "/static/js/669.7315b5c9.chunk.js",
+    "main.js": "/static/js/main.c82a5f86.js",
+    "static/js/669.47f7b884.chunk.js": "/static/js/669.47f7b884.chunk.js",
     "static/js/315.13e05b04.chunk.js": "/static/js/315.13e05b04.chunk.js",
     "static/js/865.9d4649a1.chunk.js": "/static/js/865.9d4649a1.chunk.js",
     "static/js/408.0aca51ea.chunk.js": "/static/js/408.0aca51ea.chunk.js",
@@ -16,8 +16,8 @@
     "static/media/dancing-script-vietnamese-400-normal.woff2": "/static/media/dancing-script-vietnamese-400-normal.389f8b05090f0e471f76.woff2",
     "index.html": "/index.html",
     "main.ca2d7488.css.map": "/static/css/main.ca2d7488.css.map",
-    "main.90e6bc5c.js.map": "/static/js/main.90e6bc5c.js.map",
-    "669.7315b5c9.chunk.js.map": "/static/js/669.7315b5c9.chunk.js.map",
+    "main.c82a5f86.js.map": "/static/js/main.c82a5f86.js.map",
+    "669.47f7b884.chunk.js.map": "/static/js/669.47f7b884.chunk.js.map",
     "315.13e05b04.chunk.js.map": "/static/js/315.13e05b04.chunk.js.map",
     "865.9d4649a1.chunk.js.map": "/static/js/865.9d4649a1.chunk.js.map",
     "408.0aca51ea.chunk.js.map": "/static/js/408.0aca51ea.chunk.js.map",
@@ -26,6 +26,6 @@
   },
   "entrypoints": [
     "static/css/main.ca2d7488.css",
-    "static/js/main.90e6bc5c.js"
+    "static/js/main.c82a5f86.js"
   ]
 }
