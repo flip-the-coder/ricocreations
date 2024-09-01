@@ -17,7 +17,7 @@ export default Layout;
 const LayoutWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;  /* Ensures the wrapper covers the full height of the viewport */
     overflow: hidden;
 `;
 
@@ -30,6 +30,6 @@ const MyHomesContent = styled.div`
     @media (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
         padding: 10px;  /* Adjust padding for smaller screens */
         box-sizing: border-box;  /* Ensures padding is included in the element's total width and height */
-        margin-top: 5px;
+        margin-bottom: 50px;  /* Provides space for the URL bar */
     }
 `;
