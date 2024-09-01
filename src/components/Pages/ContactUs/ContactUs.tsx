@@ -1,7 +1,9 @@
 import React from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import styled from 'styled-components';
 
-// Define styled components
+// Define styled components (keeping your existing styles)
 const Row = styled.div`
     display: flex;
     flex-direction: column;
@@ -58,36 +60,138 @@ const SocialLink = styled.a`
     text-decoration: none;
 `;
 
-// Placeholder for form and social links
-const Form = () => (
-    <form>
-        <label>
-            Name
-            <input type="text" placeholder="Name" />
-        </label>
-        <label>
-            Email
-            <input type="email" placeholder="Email" />
-        </label>
-        <label>
-            Phone
-            <input type="text" placeholder="Phone" />
-        </label>
-        <label>
-            Availability
-            <input type="date" placeholder="Please select your availability so we can call back you." />
-        </label>
-        <label>
-            Reason for consultation
-            <textarea placeholder="Reason for consultation" />
-        </label>
-        <label>
-            Captcha
-            <input type="text" placeholder="Captcha" />
-        </label>
-        <button type="submit">Submit</button>
-    </form>
-);
+const Input = styled.input`
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+`;
+
+const TextArea = styled.textarea`
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+`;
+
+const Button = styled.button`
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+`;
+
+const Error = styled.div`
+    color: red;
+    margin-bottom: 10px;
+`;
+
+// Define the validation schema using Yup
+const validationSchema = Yup.object({
+    name: Yup.string().required('Name is required'),
+    email: Yup.string().email('Invalid email format').required('Email is required'),
+    phone: Yup.string().required('Phone is required'),
+    availability: Yup.date().required('Availability is required'),
+    reason: Yup.string().required('Reason for consultation is required'),
+    captcha: Yup.string().required('Captcha is required'),
+});
+
+// Form component using Formik
+const Form = () => {
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            email: '',
+            phone: '',
+            availability: '',
+            reason: '',
+            captcha: '',
+        },
+        validationSchema: validationSchema,
+        onSubmit: values => {
+            console.log('Form data', values);
+        },
+    });
+
+    return (
+        <form onSubmit={formik.handleSubmit}>
+            <label>
+                Name
+                <Input
+                    type="text"
+                    name="name"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.name}
+                />
+                {formik.touched.name && formik.errors.name ? <Error>{formik.errors.name}</Error> : null}
+            </label>
+            <label>
+                Email
+                <Input
+                    type="email"
+                    name="email"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.email}
+                />
+                {formik.touched.email && formik.errors.email ? <Error>{formik.errors.email}</Error> : null}
+            </label>
+            <label>
+                Phone
+                <Input
+                    type="text"
+                    name="phone"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.phone}
+                />
+                {formik.touched.phone && formik.errors.phone ? <Error>{formik.errors.phone}</Error> : null}
+            </label>
+            <label>
+                Availability
+                <Input
+                    type="date"
+                    name="availability"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.availability}
+                />
+                {formik.touched.availability && formik.errors.availability ? <Error>{formik.errors.availability}</Error> : null}
+            </label>
+            <label>
+                Reason for consultation
+                <TextArea
+                    name="reason"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.reason}
+                />
+                {formik.touched.reason && formik.errors.reason ? <Error>{formik.errors.reason}</Error> : null}
+            </label>
+            <label>
+                Captcha
+                <Input
+                    type="text"
+                    name="captcha"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.captcha}
+                />
+                {formik.touched.captcha && formik.errors.captcha ? <Error>{formik.errors.captcha}</Error> : null}
+            </label>
+            <Button type="submit">Submit</Button>
+        </form>
+    );
+};
 
 const ContactUs = () => {
     return (
@@ -99,6 +203,7 @@ const ContactUs = () => {
             </Row>
             <FullWidthColumn>
                 <CustomHeading>Request Expert CBD Consultation</CustomHeading>
+                <CustomHeading>Get with Jessica so that we can set up the SMS messaging - I need company info for AWS</CustomHeading>
             </FullWidthColumn>
             <Row>
                 <FormContainer>

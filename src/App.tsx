@@ -11,7 +11,7 @@ import { DEFAULT_THEME } from './stores/ThemeStore';
 import DispensaryRoutes from './components/Pages/DispensaryRoutes';
 
 // Lazy-loaded pages
-const Home = lazy(() => import('./components/Pages/Home'));
+const Home = lazy(() => import('./components/Pages/Home/Home'));
 const Dispensary = lazy(() => import('./components/Pages/Dispensary/Dispensary'));
 const ContactUs = lazy(() => import('./components/Pages/ContactUs/ContactUs'));
 const Events = lazy(() => import('./components/Pages/Events/Events'));

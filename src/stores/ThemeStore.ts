@@ -86,18 +86,18 @@ export class ThemeStore {
 
         let themeName: string | null = subDomain;
         this.setThemeName(themeName);
-        theme = this.getTheme(themeName, true);
+        theme = this.getTheme();
 
         if (!theme && process.env.NODE_ENV === 'development') {
             // If we can't get a theme from first part of url, we try seeing if we can get one from url query parameter, and we only in dev
             const params = new URLSearchParams(location.search);
             themeName = params.get('theme');
-            theme = this.getTheme(themeName, true);
+            theme = this.getTheme();
         }
 
         if (!theme) {
             this.setThemeName('paradigm');
-            theme = this.getTheme(this.themeName);
+            theme = this.getTheme();
         }
 
         if (theme) {
@@ -106,21 +106,8 @@ export class ThemeStore {
         this.setIsLoadingTheme(false);
     }
 
-    private getTheme(themeName: string | null, isCustom: boolean = false) {
+    private getTheme() {
         let theme: any;
-        if (themeName) {
-            try {
-                // if (isCustom) {
-                //     theme = require(`../_clients/${themeName}/theme/${themeName}`);
-                // } else {
-                //     theme = require(`../theme/${themeName}`);
-
-                // }
-                theme = require(`../theme/${themeName}`);
-            } catch (error) {
-                // Theme was not found, we let it go
-            }
-        }
         return theme;
     }
 

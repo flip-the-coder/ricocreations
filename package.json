@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@fontsource/dancing-script": "^5.0.19",
         "axios": "^0.21.1",
         "browserify-zlib": "^0.2.0",
         "formik": "^2.1.5",

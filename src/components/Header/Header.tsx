@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { LogoHeight, colors, fontSizes, fonts } from '../../SharedThemes';
 import { MEDIUM_DEVICE_WIDTH } from '../../utils/browserUtils';
+import '@fontsource/dancing-script'; // or any other font of your choice
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -25,7 +26,7 @@ const Header: React.FC = () => {
   return (
     <NavigationBar>
       <LogoWrapper>
-        <img src={''} alt="Update Logo" />
+        <img src={''} alt="Rico Creations" />
       </LogoWrapper>
       <BurgerMenu onClick={() => setIsMenuOpen(!isMenuOpen)} />
       <LinksContainer isOpen={isMenuOpen}>
@@ -64,17 +65,19 @@ const NavigationBar = styled.header`
 `;
 
 const LogoWrapper = styled.div`
-  width: 150px;
   display: flex;
   align-items: center;
   margin-right: 20px;
+  color: white;
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  font-weight: bold;
 
   img {
     padding-left: 12px;
     max-height: ${LogoHeight};
     height: ${LogoHeight};
     align-self: center;
-    border: 2px solid red;
 
     @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
       height: 45px;
@@ -92,17 +95,16 @@ const LinksContainer = styled.ul<{ isOpen: boolean }>`
   list-style: none;
   overflow: hidden;
   transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  
+
   @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
     flex-direction: column;
     background: ${colors.navBar};
     position: fixed;
-    top: ${headerHeight}px; /* Adjust based on header height */
+    top: ${headerHeight}px;
     right: 0;
     width: 100vw;
-    border-left: 1px solid grey;
     padding: 1rem;
-    z-index: 1000; /* Ensure the menu appears above other content */
+    z-index: 1000;
     max-height: ${({ isOpen }) => (isOpen ? '500px' : '0')};
     opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
   }
@@ -119,15 +121,15 @@ const LinksContainer = styled.ul<{ isOpen: boolean }>`
 
 const BurgerMenu = styled.div`
   display: none;
-  
+
   @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    margin-left: auto;  /* Aligns to the right */
+    margin-left: auto;
     position: relative;
-    width: 30px; /* Adjust width as needed */
-    height: 20px; /* Adjust height as needed */
+    width: 30px;
+    height: 20px;
 
     &::before,
     &::after {
@@ -141,11 +143,11 @@ const BurgerMenu = styled.div`
     }
 
     &::before {
-      top: 0; /* Top line */
+      top: 0;
     }
 
     &::after {
-      bottom: 0; /* Bottom line */
+      bottom: 0;
     }
 
     & > div {
@@ -154,7 +156,7 @@ const BurgerMenu = styled.div`
       height: 2px;
       background: white;
       transition: 0.3s;
-      top: 50%; /* Center line */
+      top: 50%;
       transform: translateY(-50%);
     }
   }
@@ -170,13 +172,13 @@ const LinkOption = styled.li`
   margin-left: 20px;
   text-align: center;
   opacity: 1;
-
+    
   a {
     color: white;
     opacity: 0.6;
     text-decoration: none;
     transition: opacity 0.2s ease-in-out;
-
+    
     &.active,
     :hover {
       opacity: 1;
