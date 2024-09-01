@@ -4,6 +4,7 @@ import Gallery from '../../ImageGallery/Gallery';
 import styled from 'styled-components';
 import { Product, products, ProductType, FilterOptions } from '../../../models/Product';
 import CategoryFilter from './CategoryFilter/CategoryFilter';
+import { iOS, MEDIUM_DEVICE_WIDTH, SMALL_DEVICE_WIDTH } from '../../../utils/browserUtils';
 
 const Home: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<ProductType>(ProductType.ALL);
@@ -26,9 +27,9 @@ const Home: React.FC = () => {
             />
             {filteredProducts.map((product: Product) => (
                 <ProductContainer key={product.id}>
-                    <ImageWrapper>
+                    <ImagesContainer>
                         <Gallery photos={product.photos} />
-                    </ImageWrapper>
+                    </ImagesContainer>
                     <h2>{product.name}</h2>
                     <Description>{product.description}</Description>
                     <p>Price: ${product.price.toFixed(2)}</p>
@@ -40,14 +41,38 @@ const Home: React.FC = () => {
 
 export default observer(Home);
 
+export const CARD_PADDING = 0.25;
+
+const ImagesContainer = styled.div`
+    height: fit-content;
+    width: 100%;
+    padding: ${CARD_PADDING}rem 0 ${CARD_PADDING}rem ${CARD_PADDING}rem;
+    border-radius: 0.25rem;
+
+    img {
+        display: flex;
+        border-radius: 0.25rem;
+        object-fit: contain;
+        width: auto;
+        max-width: 100%;
+    }
+`;
 const MainContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding: 20px;
 
-    @media (min-width: 768px) {
-        gap: 20px;
+        @media only screen and (max-width: ${SMALL_DEVICE_WIDTH + 1}px) and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
+            width: auto !important;
+        }
+
+        @media only screen and (max-width: ${SMALL_DEVICE_WIDTH}px) {
+            margin-top: ${iOS() ? '-6.25rem' : '-3.125rem'};
+            width: auto !important;
+            height: auto !important;
+            overflow: hidden;
+        }
     }
 `;
 
@@ -67,17 +92,6 @@ const ProductContainer = styled.div`
     @media (max-width: 480px) {
         max-width: 100%;
         margin: 5px;
-    }
-`;
-
-const ImageWrapper = styled.div`
-    width: 100%;
-    overflow: hidden;
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
     }
 `;
 
