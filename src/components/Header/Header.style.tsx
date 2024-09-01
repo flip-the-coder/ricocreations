@@ -183,8 +183,13 @@ const LinkOption = styled.li`
   }
 `;
 
+const ContentWrapper = styled.div`
+  margin-top: ${headerHeight}px;
+  box-sizing: border-box;
+`;
+
 export const HeaderStyles = {
     NavigationBar,
     LinkOption,
-    LogoText, LinksContainer, BurgerMenu, LogoImage, LogoWrapper
+    LogoText, LinksContainer, BurgerMenu, LogoImage, LogoWrapper, ContentWrapper
 }

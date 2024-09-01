@@ -14,22 +14,25 @@ const Layout = ({ children }) => {
 
 export default Layout;
 
+const headerHeight = 50;
+
 const LayoutWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 100vh;  /* Ensures the wrapper covers the full height of the viewport */
+    min-height: 100vh;
     overflow: hidden;
 `;
 
 const MyHomesContent = styled.div`
     background: white;
-    flex: 1;  /* Allows content to fill remaining space */
-    overflow-y: auto;  /* Enables vertical scrolling */
-    padding: 10px;  /* Adds padding for better spacing */
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    margin-top: ${headerHeight}px;
 
     @media (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
-        padding: 10px;  /* Adjust padding for smaller screens */
-        box-sizing: border-box;  /* Ensures padding is included in the element's total width and height */
-        margin-bottom: 50px;  /* Provides space for the URL bar */
+        padding: 10px;
+        box-sizing: border-box;
+        margin-top: ${headerHeight}px;
     }
 `;
