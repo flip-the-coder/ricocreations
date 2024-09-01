@@ -57,7 +57,7 @@ const ProductContainer = styled.div`
     border-radius: 10px;
     max-width: calc(33.333% - 10px);
     text-align: center;
-    overflow: hidden; /* Ensure no overflow */
+    overflow: hidden;
 
     @media (max-width: 767px) {
         max-width: calc(50% - 20px);
@@ -72,13 +72,12 @@ const ProductContainer = styled.div`
 
 const ImageWrapper = styled.div`
     width: 100%;
-    height: 200px;
     overflow: hidden;
 
     img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
     }
 `;
 
