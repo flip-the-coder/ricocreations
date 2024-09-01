@@ -20,6 +20,7 @@ export interface Product {
     type: ProductType[];
     photos: string[];
     rating: number; // Added rating field
+    quantity: number;
 }
 
 export const FilterOptions: Filter[] = [
@@ -62,7 +63,8 @@ export const products: Product[] = [
             'http://images.squarespace-cdn.com/content/v1/5c72d15fc46f6d147ea478e5/1570575849912-ZY71UJ5LWTNRBTZKZR8J/lolita.jpg',
             'http://images.squarespace-cdn.com/content/v1/5c72d15fc46f6d147ea478e5/1570575848050-XIMEV1ZFE18J155X2CN9/CITRUS+ISLAND.jpg'
         ],
-        rating: 4 // Added rating
+        rating: 4,
+        quantity: 0
     },
     {
         id: '2',
@@ -74,7 +76,8 @@ export const products: Product[] = [
             'https://images.pexels.com/photos/1048306/pexels-photo-1048306.jpeg',
             'https://images.pexels.com/photos/2280543/pexels-photo-2280543.jpeg'
         ],
-        rating: 4.5 // Added rating
+        rating: 4.5,
+        quantity: 0
     },
     {
         id: '3',
@@ -86,7 +89,8 @@ export const products: Product[] = [
             'https://images.pexels.com/photos/4050293/pexels-photo-4050293.jpeg',
             'https://images.pexels.com/photos/45171/pexels-photo-45171.jpeg'
         ],
-        rating: 4 // Added rating
+        rating: 4,
+        quantity: 0
     },
     {
         id: '4',
@@ -98,7 +102,8 @@ export const products: Product[] = [
             'https://images.pexels.com/photos/466803/pexels-photo-466803.jpeg',
             'https://images.pexels.com/photos/1047047/pexels-photo-1047047.jpeg'
         ],
-        rating: 4.5 // Added rating
+        rating: 4.5,
+        quantity: 0
     },
     {
         id: '5',
@@ -110,6 +115,7 @@ export const products: Product[] = [
             'https://images.pexels.com/photos/2696140/pexels-photo-2696140.jpeg',
             'https://images.pexels.com/photos/428378/pexels-photo-428378.jpeg'
         ],
-        rating: 4 // Added rating
+        rating: 4,
+        quantity: 0
     }
 ];

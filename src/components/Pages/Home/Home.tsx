@@ -4,9 +4,11 @@ import Gallery from '../../ImageGallery/Gallery';
 import { Product, products, ProductType, FilterOptions } from '../../../models/Product';
 import CategoryFilter from './CategoryFilter/CategoryFilter';
 import { HomeStyles } from './Home.style';
+import { useStores } from '../../../hooks/useStores';
 
 const Home: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<ProductType>(ProductType.ALL);
+    const { cartStore } = useStores();
     const { MainContainer, ProductContainer, Description, ProductList, ImagesContainer } = HomeStyles;
 
     const handleCategoryChange = (category: ProductType) => {
@@ -34,6 +36,7 @@ const Home: React.FC = () => {
                         <h2>{product.name}</h2>
                         <Description>{product.description}</Description>
                         <p>Price: ${product.price.toFixed(2)}</p>
+                        <button onClick={() => cartStore.addToCart(product)}>Add to Cart</button>
                     </ProductContainer>
                 ))}
             </ProductList>
