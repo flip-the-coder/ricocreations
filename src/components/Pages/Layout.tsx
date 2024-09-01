@@ -18,17 +18,18 @@ const LayoutWrapper = styled.div`
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow: hidden;  /* Prevents overflow on the main container */
+    overflow: hidden;
 `;
 
 const MyHomesContent = styled.div`
     background: white;
     flex: 1;  /* Allows content to fill remaining space */
     overflow-y: auto;  /* Enables vertical scrolling */
-    padding: 20px;  /* Adds padding for better spacing */
+    padding: 10px;  /* Adds padding for better spacing */
 
     @media (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
         padding: 10px;  /* Adjust padding for smaller screens */
         box-sizing: border-box;  /* Ensures padding is included in the element's total width and height */
+        margin-top: 5px;
     }
 `;
