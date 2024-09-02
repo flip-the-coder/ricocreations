@@ -18,7 +18,7 @@ const Events = lazy(() => import('./components/Pages/Events/Events'));
 
 const InitialReactPage = () => {
     const { themeStore, intlStore } = useStores();
-    
+
     return (
         <IntlProvider locale={intlStore.locale} messages={intlStore.messages} defaultLocale={'en'}>
             <ThemeProvider theme={DEFAULT_THEME}>
@@ -27,10 +27,38 @@ const InitialReactPage = () => {
                     <GlobalStyle theme={themeStore.theme} />
                     <Suspense fallback={<ChangeAnswerSpinner isVisible />}>
                         <Routes>
-                            <Route path="/dispensary" element={<DispensaryRoutes><Dispensary /></DispensaryRoutes>} />
-                            <Route path="/events" element={<DispensaryRoutes><Events /></DispensaryRoutes>} />
-                            <Route path="/contact" element={<DispensaryRoutes><ContactUs /></DispensaryRoutes>} />
-                            <Route path="*" element={<DispensaryRoutes><Home /></DispensaryRoutes>} />
+                            <Route
+                                path="/dispensary"
+                                element={
+                                    <DispensaryRoutes>
+                                        <Dispensary />
+                                    </DispensaryRoutes>
+                                }
+                            />
+                            <Route
+                                path="/events"
+                                element={
+                                    <DispensaryRoutes>
+                                        <Events />
+                                    </DispensaryRoutes>
+                                }
+                            />
+                            <Route
+                                path="/contact"
+                                element={
+                                    <DispensaryRoutes>
+                                        <ContactUs />
+                                    </DispensaryRoutes>
+                                }
+                            />
+                            <Route
+                                path="*"
+                                element={
+                                    <DispensaryRoutes>
+                                        <Home />
+                                    </DispensaryRoutes>
+                                }
+                            />
                         </Routes>
                     </Suspense>
                 </NotificationProvider>
@@ -46,7 +74,7 @@ function App() {
 export default App;
 
 const GlobalStyle = createGlobalStyle<{ theme: any }>`
-   * {
+    * {
         padding: 0;
         width: 100%;
         margin: 0;
@@ -67,12 +95,12 @@ const GlobalStyle = createGlobalStyle<{ theme: any }>`
     }
 
     html, body {
-        font-family: Montserrat;
+        font-family: Montserrat, sans-serif;
         width: 100%;
         height: 100%;
+        overflow-x: hidden;
 
-        @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
-            overflow-x: hidden;
+        @media (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
             position: relative;
             overscroll-behavior: none;
         }
@@ -83,6 +111,7 @@ const GlobalStyle = createGlobalStyle<{ theme: any }>`
         font-weight: normal;
         font-size: 1.5rem; /* Adjust to your desired default font size */
         font-style: normal;
+        line-height: 1.2; /* Improves readability on mobile */
     }
 
     ::-webkit-scrollbar {
@@ -94,5 +123,29 @@ const GlobalStyle = createGlobalStyle<{ theme: any }>`
     ::-webkit-scrollbar-thumb {
         background: #cccccc;
         border-radius: 3px;
+    }
+
+    /* Additional mobile-friendly styles */
+    body, #root, .App {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    .App {
+        flex-grow: 1;
+    }
+
+    /* Make sure buttons and inputs are more responsive */
+    button, input, textarea {
+        font-family: inherit;
+        font-size: 1rem;
+        padding: 0.5rem;
+        border-radius: 4px;
+        @media (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
+            font-size: 0.875rem;
+            padding: 0.75rem 1rem;
+        }
     }
 `;
