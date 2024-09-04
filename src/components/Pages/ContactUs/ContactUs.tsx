@@ -3,61 +3,17 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
 
-// Define styled components (keeping your existing styles)
-const Row = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fdb3ba;
-    margin: 20px 0;
-    padding: 40px 0;
-`;
-
-const Column = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
+// Styled components
+const FormContainer = styled.div`
+    max-width: 90%;
     margin: 0 auto;
+    padding: 15px;
+    background-color: #fdb3ba;
 `;
 
 const Heading = styled.h2`
     text-align: center;
-    margin: 5px 0;
-    padding: 5px 0;
-`;
-
-const FullWidthColumn = styled.div`
-    width: 100%;
-    padding-bottom: 50px;
-`;
-
-const CustomHeading = styled.h3`
-    text-align: center;
-    font-weight: 600;
-`;
-
-const FormContainer = styled.div`
-    max-width: 80%;
-    margin: 0 auto;
-`;
-
-const Separator = styled.hr`
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 20px 0;
-`;
-
-const SocialLinks = styled.div`
-    display: flex;
-    justify-content: center;
-    gap: 0.2em;
-    text-align: center;
-`;
-
-const SocialLink = styled.a`
-    font-size: 1.5em;
-    color: #ccc;
-    text-decoration: none;
+    margin: 10px 0;
 `;
 
 const Input = styled.input`
@@ -72,7 +28,7 @@ const Input = styled.input`
 const TextArea = styled.textarea`
     display: block;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -82,26 +38,29 @@ const Button = styled.button`
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #ff69b4; /* Pink background for the button */
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 10px;
 `;
 
 const Error = styled.div`
-    color: red;
+    color: #ff69b4; /* Pink color for error messages */
+    font-size: 0.9em;
+    margin-top: -5px;
     margin-bottom: 10px;
 `;
 
-// Define the validation schema using Yup
+// Validation schema
 const validationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
     email: Yup.string().email('Invalid email format').required('Email is required'),
     phone: Yup.string().required('Phone is required'),
     availability: Yup.date().required('Availability is required'),
     reason: Yup.string().required('Reason for consultation is required'),
-    captcha: Yup.string().required('Captcha is required'),
+    captcha: Yup.string().required('Captcha is required')
 });
 
 // Form component using Formik
@@ -113,12 +72,12 @@ const Form = () => {
             phone: '',
             availability: '',
             reason: '',
-            captcha: '',
+            captcha: ''
         },
         validationSchema: validationSchema,
-        onSubmit: values => {
+        onSubmit: (values) => {
             console.log('Form data', values);
-        },
+        }
     });
 
     return (
@@ -132,7 +91,7 @@ const Form = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.name}
                 />
-                {formik.touched.name && formik.errors.name ? <Error>{formik.errors.name}</Error> : null}
+                {formik.touched.name && formik.errors.name && <Error>{formik.errors.name}</Error>}
             </label>
             <label>
                 Email
@@ -143,7 +102,7 @@ const Form = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.email}
                 />
-                {formik.touched.email && formik.errors.email ? <Error>{formik.errors.email}</Error> : null}
+                {formik.touched.email && formik.errors.email && <Error>{formik.errors.email}</Error>}
             </label>
             <label>
                 Phone
@@ -154,7 +113,7 @@ const Form = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.phone}
                 />
-                {formik.touched.phone && formik.errors.phone ? <Error>{formik.errors.phone}</Error> : null}
+                {formik.touched.phone && formik.errors.phone && <Error>{formik.errors.phone}</Error>}
             </label>
             <label>
                 Availability
@@ -165,7 +124,9 @@ const Form = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.availability}
                 />
-                {formik.touched.availability && formik.errors.availability ? <Error>{formik.errors.availability}</Error> : null}
+                {formik.touched.availability && formik.errors.availability && (
+                    <Error>{formik.errors.availability}</Error>
+                )}
             </label>
             <label>
                 Reason for consultation
@@ -175,7 +136,7 @@ const Form = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.reason}
                 />
-                {formik.touched.reason && formik.errors.reason ? <Error>{formik.errors.reason}</Error> : null}
+                {formik.touched.reason && formik.errors.reason && <Error>{formik.errors.reason}</Error>}
             </label>
             <label>
                 Captcha
@@ -186,7 +147,7 @@ const Form = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.captcha}
                 />
-                {formik.touched.captcha && formik.errors.captcha ? <Error>{formik.errors.captcha}</Error> : null}
+                {formik.touched.captcha && formik.errors.captcha && <Error>{formik.errors.captcha}</Error>}
             </label>
             <Button type="submit">Submit</Button>
         </form>
@@ -195,37 +156,10 @@ const Form = () => {
 
 const ContactUs = () => {
     return (
-        <div>
-            <Row>
-                <Column>
-                    <Heading>Contact us</Heading>
-                </Column>
-            </Row>
-            <FullWidthColumn>
-                <CustomHeading>Request Expert CBD Consultation</CustomHeading>
-                <CustomHeading>Get with Jessica so that we can set up the SMS messaging - I need company info for AWS</CustomHeading>
-            </FullWidthColumn>
-            <Row>
-                <FormContainer>
-                    <Form />
-                </FormContainer>
-            </Row>
-            <Separator />
-            <SocialLinks>
-                <SocialLink href="https://www.instagram.com/ricocreations/" target="_blank" rel="noopener noreferrer">
-                    Instagram
-                </SocialLink>
-                <SocialLink href="#" target="_blank" rel="noopener noreferrer">
-                    TikTok
-                </SocialLink>
-                <SocialLink href="#" target="_blank" rel="noopener noreferrer">
-                    YouTube
-                </SocialLink>
-            </SocialLinks>
-            <Row>
-                <Column></Column>
-            </Row>
-        </div>
+        <FormContainer>
+            <Heading>Contact Us</Heading>
+            <Form />
+        </FormContainer>
     );
 };
 

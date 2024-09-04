@@ -34,9 +34,8 @@ const LogoWrapper = styled.div`
     font-family: 'Dancing Script', cursive;
     font-size: 2rem;
     font-weight: bold;
-    flex: 1;
-
     position: relative;
+    flex-shrink: 0; /* Prevent the logo from shrinking */
 
     @media (max-width: 768px) {
         font-size: 1.5rem;
@@ -44,6 +43,56 @@ const LogoWrapper = styled.div`
 
     @media (max-width: 480px) {
         font-size: 1.2rem;
+    }
+`;
+
+const LinksContainer = styled.ul<{ isOpen: boolean }>`
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribute the items evenly */
+    font: normal normal 400 ${fontSizes.md} ${fonts.primary};
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    box-sizing: border-box;
+    flex: 1; /* Make LinksContainer take up the remaining space */
+
+    li {
+        flex: 1; /* Ensure each <li> occupies equal space */
+        display: flex; /* Use flexbox for inner content alignment */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        text-align: center; /* Center text inside <li> */
+    }
+
+    @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
+        flex-direction: column;
+        background: ${colors.navBar};
+        position: fixed;
+        top: ${headerHeight}px;
+        right: 0;
+        width: 100vw;
+        padding: 1rem;
+        z-index: 1000;
+        max-height: ${({ isOpen }) => (isOpen ? '500px' : '0')};
+        opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+        
+        li {
+            width: 100%; /* Ensure each <li> takes full width in column layout */
+            justify-content: flex-start; /* Align text to the left if needed in mobile view */
+        }
+    }
+
+    @media only screen and (min-width: ${MEDIUM_DEVICE_WIDTH + 1}px) {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        max-height: none;
+        opacity: 1;
+        z-index: auto;
     }
 `;
 
@@ -55,7 +104,7 @@ const LogoImage = styled.img`
     box-sizing: border-box;
 
     @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
-        height: 45px;
+        height: 50;
         width: 50px;
     }
 `;
@@ -70,41 +119,6 @@ const LogoText = styled.div`
 
     @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
         font-size: 1.5rem;
-    }
-`;
-
-const LinksContainer = styled.ul<{ isOpen: boolean }>`
-    height: 100%;
-    display: flex;
-    align-items: center;
-    font: normal normal 400 ${fontSizes.md} ${fonts.primary};
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    overflow: hidden;
-    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    box-sizing: border-box;
-
-    @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
-        flex-direction: column;
-        background: ${colors.navBar};
-        position: fixed;
-        top: ${headerHeight}px;
-        right: 0;
-        width: 100vw;
-        padding: 1rem;
-        z-index: 1000;
-        max-height: ${({ isOpen }) => (isOpen ? '500px' : '0')};
-        opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
-    }
-
-    @media only screen and (min-width: ${MEDIUM_DEVICE_WIDTH + 1}px) {
-        display: flex;
-        flex-direction: row;
-        position: static;
-        max-height: none;
-        opacity: 1;
-        z-index: auto;
     }
 `;
 

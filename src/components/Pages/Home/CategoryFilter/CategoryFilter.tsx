@@ -10,10 +10,12 @@ interface CategoryFilterProps {
 
 const Container = styled.div`
     display: flex;
-    overflow-x: auto; /* Enable horizontal scrolling */
-    padding: 10px;
+    justify-content: space-between;
+    padding: 0 10px 0 10px;
+    flex: 1;
     scroll-behavior: smooth;
     white-space: nowrap; /* Prevents line wrapping of child elements */
+    overflow-x: auto; /* Enable horizontal scrolling */
 
     &::-webkit-scrollbar {
         display: none; /* Hide scrollbar for a cleaner look */

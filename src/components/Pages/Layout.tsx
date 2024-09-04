@@ -28,7 +28,6 @@ const MyHomesContent = styled.div`
     flex: 1;
     overflow-y: auto;
     padding: 10px;
-    margin-top: ${headerHeight}px;
     width: 100%;
     max-width: 100vw;
     box-sizing: border-box;
