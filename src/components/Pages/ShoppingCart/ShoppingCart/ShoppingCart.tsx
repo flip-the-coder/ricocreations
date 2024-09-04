@@ -1,23 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import CartItem from './CartItem';
 import CartSummary from './CartSummary';
 import { useStores } from '../../../../hooks/useStores';
 
-const ShoppingCart = ({ items, onRemoveItem }) => {
+const ShoppingCart = ({ onRemoveItem }) => {
     const { cartStore } = useStores();
+    const [items, setItems] = useState(cartStore.cart);
 
     useEffect(() => {
-        console.log(cartStore.cart);
+        setItems(cartStore.cart);
     }, [cartStore.cart]);
-
-
 
     return (
         <div className="shopping-cart">
-            {cartStore.cart.map((item) => (
+            {items.map((item) => (
                 <CartItem key={item.id} item={item} onRemove={onRemoveItem} />
             ))}
-            <CartSummary totalItems={cartStore.totalItems} totalPrice={cartStore.totalPrice} />
+            <CartSummary />
         </div>
     );
 };
