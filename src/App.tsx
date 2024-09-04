@@ -74,78 +74,45 @@ function App() {
 export default App;
 
 const GlobalStyle = createGlobalStyle<{ theme: any }>`
-    * {
-        padding: 0;
-        width: 100%;
-        margin: 0;
-        box-sizing: border-box;
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
-        -webkit-tap-highlight-color: transparent;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
 
-        :not(input):not(textarea) {
-            @media (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
-                -webkit-touch-callout: none; /* iOS Safari */
-                -webkit-user-select: none; /* Safari */
-            }
-        }
+html, body {
+    font-family: Montserrat, sans-serif;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: #979797;
+
+    @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
+        overscroll-behavior: none;
     }
+}
 
-    ::before, ::after {
-        box-sizing: inherit;
+h2 {
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    font-size: 1.5rem; 
+    font-style: normal;
+    margin-bottom: 1rem;
+
+    @media (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
+        font-size: 1.25rem; 
     }
+}
 
-    html, body {
-        font-family: Montserrat, sans-serif;
-        width: 100%;
-        height: 100%;
-        overflow-x: hidden;
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: inherit;
+}
 
-        @media (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
-            position: relative;
-            overscroll-behavior: none;
-        }
-    }
-
-    h2 {
-        font-family: Arial, sans-serif;
-        font-weight: normal;
-        font-size: 1.5rem; /* Adjust to your desired default font size */
-        font-style: normal;
-        line-height: 1.2; /* Improves readability on mobile */
-    }
-
-    ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-        background: inherit;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: #cccccc;
-        border-radius: 3px;
-    }
-
-    /* Additional mobile-friendly styles */
-    body, #root, .App {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        overflow-x: hidden;
-    }
-
-    .App {
-        flex-grow: 1;
-    }
-
-    /* Make sure buttons and inputs are more responsive */
-    button, input, textarea {
-        font-family: inherit;
-        font-size: 1rem;
-        padding: 0.5rem;
-        border-radius: 4px;
-        @media (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
-            font-size: 0.875rem;
-            padding: 0.75rem 1rem;
-        }
-    }
-`;
+::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 3px;
+}
+}`;
