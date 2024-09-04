@@ -10,11 +10,11 @@ import { useStores } from './hooks/useStores';
 import { DEFAULT_THEME } from './stores/ThemeStore';
 import DispensaryRoutes from './components/Pages/DispensaryRoutes';
 
-// Lazy-loaded pages
 const Home = lazy(() => import('./components/Pages/Home/Home'));
 const Dispensary = lazy(() => import('./components/Pages/Dispensary/Dispensary'));
 const ContactUs = lazy(() => import('./components/Pages/ContactUs/ContactUs'));
 const Events = lazy(() => import('./components/Pages/Events/Events'));
+const ShoppingCart = lazy(() => import('./components/Pages/ShoppingCart/ShoppingCart'));
 
 const InitialReactPage = () => {
     const { themeStore, intlStore } = useStores();
@@ -51,6 +51,15 @@ const InitialReactPage = () => {
                                     </DispensaryRoutes>
                                 }
                             />
+                            <Route
+                                path="/cart"
+                                element={
+                                    <DispensaryRoutes>
+                                        <ShoppingCart />
+                                    </DispensaryRoutes>
+                                }
+                            />
+
                             <Route
                                 path="*"
                                 element={

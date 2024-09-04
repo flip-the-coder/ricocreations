@@ -21,6 +21,7 @@ export class CartStore {
 
     removeFromCart(itemId: string) {
         this.cart = this.cart.filter((item: Product) => item.id !== itemId);
+        console.log(this.cart);
     }
 
     clearCart() {

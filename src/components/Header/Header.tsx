@@ -16,7 +16,8 @@ const Header: React.FC = () => {
         { name: 'Dispensary', path: '/dispensary' },
         // { name: 'About', path: '/aboutMe' },
         { name: 'Events', path: '/events' },
-        { name: 'Contact', path: '/contact' }
+        { name: 'Contact', path: '/contact' },
+        { name: 'cart', path: '/cart' }
     ];
 
     const handleLinkClick = () => {

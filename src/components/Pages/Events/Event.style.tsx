@@ -1,43 +1,45 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface EventHeaderProps {
-  imageUrl?: string;
+    imageUrl?: string;
 }
 
 const EventContainer = styled.div`
-  font-size: 1em;
-  border: 1px solid #ccc;
-  margin: 10px 0;
-  padding: 0;
-  border-radius: 5px;
-  overflow: hidden;
-  box-sizing: border-box;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    padding: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
 
-  @media (max-width: 768px) {
-    margin: 5px 0;
-  }
+    @media (max-width: 768px) {
+        margin: 5px 0;
+    }
 `;
 
 const EventHeader = styled.div<EventHeaderProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 200px;
-  background-color: #f0f0f0;
-  border-radius: 5px;
-  overflow: hidden;
-  position: relative;
-  box-sizing: border-box;
-
-  img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: 200px;
+    background-color: #f0f0f0;
     border-radius: 5px;
-  }
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
 
-  ${props => !props.imageUrl && `
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    ${(props) =>
+        !props.imageUrl &&
+        `
     height: auto;
     padding: 20px;
     display: flex;
@@ -46,95 +48,96 @@ const EventHeader = styled.div<EventHeaderProps>`
     text-align: center;
   `}
 
-  @media (max-width: 768px) {
-    height: 150px;
-    padding: 15px;
-  }
+    @media (max-width: 768px) {
+        height: 150px;
+        padding: 15px;
+    }
 
-  @media (max-width: 480px) {
-    height: 120px;
-    padding: 10px;
-  }
+    @media (max-width: 480px) {
+        height: 120px;
+        padding: 10px;
+    }
 `;
 
 const EventName = styled.div`
-  font-weight: bold;
-  font-size: 1.5em;
-  color: #333;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #333;
 
-  @media (max-width: 768px) {
-    font-size: 1.25em;
-  }
+    @media (max-width: 768px) {
+        font-size: 1.25em;
+    }
 
-  @media (max-width: 480px) {
-    font-size: 1em;
-  }
+    @media (max-width: 480px) {
+        font-size: 1em;
+    }
 `;
 
 const EventDetails = styled.div`
-  margin-top: 10px;
-  text-align: center;
+    margin-top: 10px;
+    text-align: center;
 
-  @media (min-width: 768px) {
-    padding-top: 20px;
-  }
+    @media (min-width: 768px) {
+        padding-top: 20px;
+    }
 `;
 
 const WebsiteContainer = styled.div`
-  gap: 5px;
-  padding: 10px 0;
-  text-align: center;
-
-  a {
-    text-decoration: none;
-    color: blue;
-    cursor: pointer;
-    font-size: 1em;
-  }
-
-  @media (max-width: 768px) {
     gap: 5px;
-  }
+    padding: 10px 0;
+    text-align: center;
 
-  @media (max-width: 480px) {
-    gap: 4px;
-  }
+    a {
+        text-decoration: none;
+        color: blue;
+        cursor: pointer;
+        font-size: 1em;
+    }
+
+    @media (max-width: 768px) {
+        gap: 5px;
+    }
+
+    @media (max-width: 480px) {
+        gap: 4px;
+    }
 `;
 
 const SocialLinksContainer = styled.div`
-  display: flex;
-  gap: 10px;
-  padding: 10px 0;
-  justify-content: center;
-  
-  @media (max-width: 768px) {
-    gap: 5px;
-  }
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    justify-content: space-between;
+    margin: 0 20% 0 20%;
 
-  @media (max-width: 480px) {
-    gap: 4px;
-  }
+    @media (max-width: 768px) {
+        gap: 5px;
+    }
 
-  a {
-    font-size: 24px;
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    cursor: pointer;
-  }
+    @media (max-width: 480px) {
+        gap: 4px;
+    }
 
-  a:hover {
-    color: #007bff;
-  }
+    a {
+        font-size: 24px;
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        cursor: pointer;
+    }
+
+    a:hover {
+        color: #007bff;
+    }
 `;
 
 const EventStyles = {
-  EventContainer,
-  EventHeader,
-  EventName,
-  EventDetails,
-  WebsiteContainer,
-  SocialLinksContainer
+    EventContainer,
+    EventHeader,
+    EventName,
+    EventDetails,
+    WebsiteContainer,
+    SocialLinksContainer
 };
 
 export default EventStyles;
