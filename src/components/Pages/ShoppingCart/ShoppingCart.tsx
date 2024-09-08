@@ -1,149 +1,43 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
 import { useStores } from '../../../hooks/useStores';
+import CartSummary from './ShoppingCart/CartSummary'; // Ensure you import CartSummary
 
-// Styled components
-const CenteredContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
-`;
-
-const CartItemContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 600px;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-`;
-
-const QuantityInput = styled.input`
-    width: 60px;
-    text-align: center;
-    margin: 0 10px;
-`;
-
-const CartSummaryContainer = styled.div`
-    margin-top: 20px;
-`;
-
-// CartItem component
-const CartItem = ({ item, onRemove, onUpdateQuantity }) => {
+const ShoppingCart = observer(() => {
     const { cartStore } = useStores();
-    const [tempQuantity, setTempQuantity] = useState(item.quantity || 0);
+    const [totalPrice, setTotalPrice] = useState<number>(0);
+    const [totalItems, setTotalItems] = useState<number>(0);
 
+    // Update totals based on cartStore changes
     useEffect(() => {
-        // Update the local state if the item quantity changes externally
-        setTempQuantity(item.quantity || 0);
-    }, [item.quantity]);
+        setTotalItems(cartStore.totalItems);
+        setTotalPrice(cartStore.totalPrice);
+    }, [cartStore.totalItems, cartStore.totalPrice]); // Depend on specific properties
 
-    const handleRemove = () => {
-        onRemove(item.id);
+    const handleRemoveItem = (itemId: string) => {
+        cartStore.removeFromCart(itemId);
     };
 
-    useEffect(() => {
-        const newQuantity = parseInt(tempQuantity, 10);
-        if (!isNaN(newQuantity) && newQuantity >= 0) {
-            onUpdateQuantity(item.id, newQuantity);
+    const handleIncreaseQuantity = (itemId: string) => {
+        const cartItem = cartStore.cart.find((item) => item.id === itemId);
+        if (cartItem) {
+            console.log(`Increasing quantity for item ${itemId}`); // Debug log
+            cartStore.updateItemQuantity(itemId, cartItem.quantity + 1);
         }
-        //eslint-disable-next-line
-    }, [tempQuantity]);
-
-    const handleQuantityChange = (e) => {
-        setTempQuantity(e.target.value);
     };
 
-    return (
-        <CartItemContainer>
-            <span>{item.name}</span>
-            <span>${item.price.toFixed(2)}</span>
-            <QuantityInput
-                type="number"
-                value={
-                    cartStore.cart.find((c) => {
-                        return c.id === item.id;
-                    })?.quantity
-                }
-                onChange={handleQuantityChange}
-                min="0"
-            />
-            <button onClick={handleRemove}>Remove</button>
-        </CartItemContainer>
-    );
-};
-
-// CartSummary component
-const CartSummary = ({ totalItems, totalPrice }) => (
-    <CartSummaryContainer>
-        <h2>Summary</h2>
-        <p>Total Items: {totalItems}</p>
-        <p>Total Price: ${totalPrice.toFixed(2)}</p>
-    </CartSummaryContainer>
-);
-
-// Main ShoppingCart component
-const ShoppingCart = () => {
-    const { cartStore } = useStores();
-
-    const setCookie = useCallback((name, value, days) => {
-        let expires = '';
-        if (days) {
-            const date = new Date();
-            date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-            expires = '; expires=' + date.toUTCString();
-        }
-        document.cookie = name + '=' + (value ? encodeURIComponent(value) : '') + expires + '; path=/';
-    }, []);
-
-    const getCookie = useCallback((name) => {
-        const nameEQ = name + '=';
-        const ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i].trim();
-            if (c.indexOf(nameEQ) === 0) {
-                const cookieValue = c.substring(nameEQ.length);
-                try {
-                    return JSON.parse(decodeURIComponent(cookieValue));
-                } catch (e) {
-                    console.error('Failed to parse cookie value as JSON:', cookieValue);
-                    return null;
-                }
+    const handleDecreaseQuantity = (itemId: string) => {
+        const cartItem = cartStore.cart.find((item) => item.id === itemId);
+        if (cartItem) {
+            if (cartItem.quantity > 1) {
+                console.log(`Decreasing quantity for item ${itemId}`); // Debug log
+                cartStore.updateItemQuantity(itemId, cartItem.quantity - 1);
+            } else {
+                cartStore.removeFromCart(itemId);
             }
         }
-        return null;
-    }, []);
-
-    useEffect(() => {
-        // Load cart from cookie if available
-        const cartFromCookie = getCookie('shoppingCart');
-        if (cartFromCookie) {
-            cartStore.setCart(cartFromCookie);
-        }
-    }, [cartStore, getCookie]);
-
-    useEffect(() => {
-        // Save cart to cookie when cartStore.cart changes
-        setCookie('shoppingCart', JSON.stringify(cartStore.cart), 7);
-    }, [cartStore.cart, setCookie]);
-
-    const handleRemoveItem = (itemId) => {
-        cartStore.removeFromCart(itemId);
-        setCookie('shoppingCart', JSON.stringify(cartStore.cart), 7); // Update cookie after removing item
     };
-
-    const handleUpdateQuantity = (itemId, quantity) => {
-        cartStore.updateItemQuantity(itemId, quantity);
-        setCookie('shoppingCart', JSON.stringify(cartStore.cart), 7); // Update cookie after updating quantity
-    };
-
-    // Calculate total items and price
-    const totalItems = cartStore.cart.reduce((total, item) => total + item.quantity, 0);
-    const totalPrice = cartStore.cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
     return (
         <CenteredContainer>
@@ -151,17 +45,58 @@ const ShoppingCart = () => {
                 <p>Your cart is empty</p>
             ) : (
                 cartStore.cart.map((item) => (
-                    <CartItem
+                    <div
                         key={item.id}
-                        item={item}
-                        onRemove={handleRemoveItem}
-                        onUpdateQuantity={handleUpdateQuantity}
-                    />
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            width: '100%',
+                            maxWidth: '37.5rem',
+                            padding: '0.625rem',
+                            borderBottom: '1px solid #ddd'
+                        }}
+                    >
+                        <span>{item.name}</span>
+                        <span>${(item.price * (item.quantity || 0)).toFixed(2)}</span>
+                        <QuantityPicker>
+                            <button onClick={() => handleDecreaseQuantity(item.id)}>-</button>
+                            <input type="number" value={item.quantity || 0} readOnly />
+                            <button onClick={() => handleIncreaseQuantity(item.id)}>+</button>
+                        </QuantityPicker>
+                        <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
+                    </div>
                 ))
             )}
             <CartSummary totalItems={totalItems} totalPrice={totalPrice} />
         </CenteredContainer>
     );
-};
+});
 
 export default ShoppingCart;
+
+const CenteredContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1.25rem;
+    box-sizing: border-box;
+`;
+
+const QuantityPicker = styled.div`
+    display: flex;
+    align-items: center;
+    padding-top: 0.625rem; /* 10px = 0.625rem */
+    justify-content: center;
+
+    button {
+        padding: 0.3125rem 0.625rem; /* 5px 10px = 0.3125rem 0.625rem */
+        margin: 0 0.3125rem; /* 5px = 0.3125rem */
+    }
+
+    input {
+        width: 2.5rem; /* 40px = 2.5rem */
+        text-align: center;
+    }
+`;

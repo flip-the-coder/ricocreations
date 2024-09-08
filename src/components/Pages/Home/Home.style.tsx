@@ -1,50 +1,74 @@
 import styled from 'styled-components';
 
-export const CARD_PADDING = '0.25rem'; // Fixed to be a string
+export const CARD_PADDING = '0.25rem'; // Keeping as a string for reuse
 
 const DESCRIPTION_MAX_LINES = 3;
 
 const MainContainer = styled.div``;
 
-const ProductList = styled.div`
+const QuantityPicker = styled.div`
     display: flex;
-    flex-wrap: wrap; /* Allows items to wrap to the next line */
-    justify-content: space-between; /* Distributes space between items */
-    gap: 20px; /* Adjust as needed for spacing between cards */
+    align-items: center;
+    padding-top: 0.625rem; /* 10px = 0.625rem */
+    justify-content: center;
 
-    @media (max-width: 767px) {
-        justify-content: space-around; /* Adjust space distribution for smaller screens */
+    button {
+        padding: 0.3125rem 0.625rem; /* 5px 10px = 0.3125rem 0.625rem */
+        margin: 0 0.3125rem; /* 5px = 0.3125rem */
     }
 
-    @media (max-width: 480px) {
-        justify-content: center; /* Center cards on mobile */
+    input {
+        width: 2.5rem; /* 40px = 2.5rem */
+        text-align: center;
+    }
+`;
+
+const ProductList = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.25rem; /* 20px = 1.25rem */
+
+    @media (max-width: 47.9375rem) {
+        /* 767px = 47.9375rem */
+        justify-content: space-around;
+    }
+
+    @media (max-width: 30rem) {
+        /* 480px = 30rem */
+        justify-content: center;
     }
 
     & > * {
-        flex: 1 1 calc(50% - 20px); /* 2 cards per row with a gap of 20px */
+        flex: 1 1 calc(50% - 1.25rem); /* Adjust to rem for 20px gap */
 
-        @media (max-width: 767px) {
-            flex: 1 1 calc(50% - 20px); /* 2 cards per row on tablet */
+        @media (max-width: 47.9375rem) {
+            flex: 1 1 calc(50% - 1.25rem);
         }
 
-        @media (max-width: 480px) {
-            flex: 1 1 100%; /* 1 card per row on mobile */
+        @media (max-width: 30rem) {
+            flex: 1 1 100%;
         }
     }
 `;
+
 const ProductContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 0.625rem; /* 10px = 0.625rem */
     text-align: center;
     overflow: hidden;
     padding: ${CARD_PADDING};
     box-sizing: border-box;
 
-    @media (max-width: 767px) {
+    @media (max-width: 47.9375rem) {
         max-width: 100%;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 30rem) {
         max-width: 100%;
     }
 `;
@@ -68,5 +92,6 @@ export const HomeStyles = {
     ProductContainer,
     ImagesContainer,
     Description,
-    ProductList
+    ProductList,
+    QuantityPicker
 };
