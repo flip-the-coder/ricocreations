@@ -60,7 +60,7 @@ const Header: React.FC = () => {
                     <LinkOption key={page.path} className={location.pathname === page.path ? 'active' : ''}>
                         <NavLink to={page.path} onClick={handleLinkClick}>
                             {isMenuOpen && <Icon>{page.icon}</Icon>} {/* Show icons only in mobile view */}
-                            {!isUserUsingMobile() && <span>{page.name}</span>} {/* Show text on desktop */}
+                            <span>{page.name}</span> {/* Show text on desktop */}
                         </NavLink>
                     </LinkOption>
                 ))}
