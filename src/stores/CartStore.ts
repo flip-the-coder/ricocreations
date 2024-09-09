@@ -18,15 +18,17 @@ export class CartStore {
         }
         this.saveCartToCookie();
     }
-
     removeFromCart(itemId: string) {
-        const item = this.cart.find((item) => item.id === itemId);
-        if (item) {
-            if (item.quantity > 1) {
-                item.quantity -= 1;
-            } else {
-                this.cart = this.cart.filter((item) => item.id !== itemId);
-            }
+        // Find the item in the cart
+        const itemIndex = this.cart.findIndex((item) => item.id === itemId);
+
+        // If the item is found, remove it
+        if (itemIndex !== -1) {
+            // Set quantity to 0 and remove the item from the cart
+            this.cart[itemIndex].quantity = 0;
+            this.cart = this.cart.filter((item) => item.id !== itemId);
+
+            // Save the updated cart state
             this.saveCartToCookie();
         }
     }

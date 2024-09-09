@@ -60,7 +60,6 @@ const validationSchema = Yup.object({
     phone: Yup.string().required('Phone is required'),
     availability: Yup.date().required('Availability is required'),
     reason: Yup.string().required('Reason for consultation is required'),
-    captcha: Yup.string().required('Captcha is required')
 });
 
 // Form component using Formik
@@ -72,7 +71,6 @@ const Form = () => {
             phone: '',
             availability: '',
             reason: '',
-            captcha: ''
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -137,17 +135,6 @@ const Form = () => {
                     value={formik.values.reason}
                 />
                 {formik.touched.reason && formik.errors.reason && <Error>{formik.errors.reason}</Error>}
-            </label>
-            <label>
-                Captcha
-                <Input
-                    type="text"
-                    name="captcha"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.captcha}
-                />
-                {formik.touched.captcha && formik.errors.captcha && <Error>{formik.errors.captcha}</Error>}
             </label>
             <Button type="submit">Submit</Button>
         </form>

@@ -6,7 +6,7 @@ import EventCountdown from './EventCountdown/EventCountdown';
 import MapLinks from './MapLinks/MapLinks';
 
 const Events: React.FC = () => {
-    const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
+    const [expandedEvents, setExpandedEvents] = useState<number[]>([]); // Track multiple expanded events
     const { EventContainer, EventHeader, EventName, EventDetails, WebsiteContainer, SocialLinksContainer } = EventStyles;
 
     // Get current date
@@ -19,11 +19,18 @@ const Events: React.FC = () => {
     });
 
     useEffect(() => {
-        filteredEvents.length === 1 && setExpandedEvent(0);
+        if (filteredEvents.length === 1) {
+            setExpandedEvents([0]); // Automatically expand the single event if there's only one
+        }
     }, [filteredEvents]);
 
+    // Toggle expand for multiple events
     const toggleExpand = (index: number) => {
-        filteredEvents.length > 1 && setExpandedEvent(expandedEvent === index ? null : index);
+        if (expandedEvents.includes(index)) {
+            setExpandedEvents(expandedEvents.filter(i => i !== index)); // Collapse if already expanded
+        } else {
+            setExpandedEvents([...expandedEvents, index]); // Expand if not already expanded
+        }
     };
 
     const generateSocialLinks = (socialLinks: SocialLinks): JSX.Element => {
@@ -95,7 +102,7 @@ const Events: React.FC = () => {
                             <EventName>{event.name}</EventName>
                         )}
                     </EventHeader>
-                    {expandedEvent === index && (
+                    {expandedEvents.includes(index) && (
                         <EventDetails>
                             <EventCountdown dateOfEvent={event.ISODateOfEvent} message={event.countdownEventMessage} spanOfEvent={3} />
                             <p>{event.description}</p>

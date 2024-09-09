@@ -11,7 +11,7 @@ interface CategoryFilterProps {
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 0 10px 0 10px;
+    padding: 0 10px 10px 10px;
     flex: 1;
     scroll-behavior: smooth;
     white-space: nowrap; /* Prevents line wrapping of child elements */

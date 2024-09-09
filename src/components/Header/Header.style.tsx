@@ -35,7 +35,7 @@ const LogoWrapper = styled.div`
     font-size: 2rem;
     font-weight: bold;
     position: relative;
-    flex-shrink: 0; /* Prevent the logo from shrinking */
+    flex-shrink: 0;
 
     @media (max-width: 768px) {
         font-size: 1.5rem;
@@ -50,7 +50,7 @@ const LinksContainer = styled.ul<{ isOpen: boolean }>`
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Distribute the items evenly */
+    justify-content: space-between;
     font: normal normal 400 ${fontSizes.md} ${fonts.primary};
     margin: 0;
     padding: 0;
@@ -58,14 +58,14 @@ const LinksContainer = styled.ul<{ isOpen: boolean }>`
     overflow: hidden;
     transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
     box-sizing: border-box;
-    flex: 1; /* Make LinksContainer take up the remaining space */
+    flex: 1;
 
     li {
-        flex: 1; /* Ensure each <li> occupies equal space */
-        display: flex; /* Use flexbox for inner content alignment */
-        justify-content: center; /* Center horizontally */
-        align-items: center; /* Center vertically */
-        text-align: center; /* Center text inside <li> */
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
 
     @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
@@ -81,8 +81,8 @@ const LinksContainer = styled.ul<{ isOpen: boolean }>`
         opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
         
         li {
-            width: 100%; /* Ensure each <li> takes full width in column layout */
-            justify-content: flex-start; /* Align text to the left if needed in mobile view */
+            width: 100%;
+            justify-content: flex-start;
         }
     }
 
@@ -104,7 +104,7 @@ const LogoImage = styled.img`
     box-sizing: border-box;
 
     @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
-        height: 50;
+        height: 50px;
         width: 50px;
     }
 `;
@@ -114,7 +114,6 @@ const LogoText = styled.div`
     align-items: center;
     color: white;
     font-family: 'Dancing Script', cursive;
-
     box-sizing: border-box;
 
     @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
@@ -202,6 +201,18 @@ const LinkOption = styled.li`
     @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
         margin-left: 0;
         padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+`;
+
+const Icon = styled.div`
+    display: none; /* Hide icons by default */
+
+    @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
+        display: inline-flex; /* Show icons only on mobile screens */
+        margin-right: 8px;
     }
 `;
 
@@ -218,5 +229,6 @@ export const HeaderStyles = {
     BurgerMenu,
     LogoImage,
     LogoWrapper,
-    ContentWrapper
+    ContentWrapper,
+    Icon
 };

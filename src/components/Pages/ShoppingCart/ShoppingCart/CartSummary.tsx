@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const CartSummaryContainer = styled.div`
@@ -6,10 +6,6 @@ const CartSummaryContainer = styled.div`
 `;
 
 const CartSummary = ({ totalItems, totalPrice }) => {
-    useEffect(() => {
-        console.log('Cart Summary:', { totalItems, totalPrice });
-    }, [totalItems, totalPrice]);
-
     return (
         <CartSummaryContainer>
             <h2>Summary</h2>
