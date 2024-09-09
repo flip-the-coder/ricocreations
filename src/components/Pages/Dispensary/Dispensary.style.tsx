@@ -79,11 +79,11 @@ const CardContainer = styled.div`
     justify-content: center;
     gap: 20px;
     width: 100%;
-    max-width: 1000px; /* Adjust this as needed */
 `;
 
 interface CardProps {
     isOpen: boolean;
+    isProduct: boolean;
 }
 
 const Card = styled.div<CardProps>`
@@ -91,7 +91,8 @@ const Card = styled.div<CardProps>`
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    max-width: 100%; /* Ensures the card takes up available width */
+    width: ${(props) => (props.isProduct ? 'auto' : '100%')};
+    max-width: ${(props) => (props.isProduct ? '100%' : 'none')};
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease, max-height 0.3s ease;
@@ -117,7 +118,6 @@ const Card = styled.div<CardProps>`
     }
 
     @media (max-width: 768px) {
-        max-width: 100%;
         padding: 15px;
     }
 `;

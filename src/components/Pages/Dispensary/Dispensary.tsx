@@ -15,7 +15,7 @@ const ExpandableCard: React.FC<ExpandableCardProps> = ({ title, text, list, isOp
     const { Card, Text, List } = DispensaryStyles;
 
     return (
-        <Card isOpen={isOpen} onClick={onToggle}>
+        <Card isOpen={isOpen} onClick={onToggle} isProduct={false}>
             <h2>{title}</h2>
             <Text>{text}</Text>
             {list && isOpen && (
@@ -105,7 +105,7 @@ const Dispensary = () => {
             <Text>Explore our selection of high-quality CBD products designed to fit your needs:</Text>
             <CardContainer>
                 {products.map((product, index) => (
-                    <Card key={index} onClick={() => handleCardClick(product.path)} isOpen={false}>
+                    <Card key={index} onClick={() => handleCardClick(product.path)} isOpen={false} isProduct>
                         <h2>{product.name}</h2>
                         <p>{product.description}</p>
                     </Card>
