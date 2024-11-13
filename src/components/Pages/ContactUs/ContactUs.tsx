@@ -59,7 +59,7 @@ const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email format').required('Email is required'),
     phone: Yup.string().required('Phone is required'),
     availability: Yup.date().required('Availability is required'),
-    reason: Yup.string().required('Reason for consultation is required'),
+    reason: Yup.string().required('Reason for consultation is required')
 });
 
 // Form component using Formik
@@ -70,7 +70,7 @@ const Form = () => {
             email: '',
             phone: '',
             availability: '',
-            reason: '',
+            reason: ''
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {

@@ -6,30 +6,27 @@ import EventCountdown from './EventCountdown/EventCountdown';
 import MapLinks from './MapLinks/MapLinks';
 
 const Events: React.FC = () => {
-    const [expandedEvents, setExpandedEvents] = useState<number[]>([]); // Track multiple expanded events
-    const { EventContainer, EventHeader, EventName, EventDetails, WebsiteContainer, SocialLinksContainer } = EventStyles;
+    const [expandedEvents, setExpandedEvents] = useState<number[]>([]);
+    const { EventContainer, EventHeader, EventName, EventDetails, WebsiteContainer, SocialLinksContainer } =
+        EventStyles;
 
-    // Get current date
     const currentDate = new Date();
-
-    // Filter upcoming events to exclude past events
-    const filteredEvents = UpcomingEvents.filter(event => {
+    const filteredEvents = UpcomingEvents.filter((event) => {
         const eventDate = new Date(event.ISODateOfEvent);
         return eventDate >= currentDate;
     });
 
     useEffect(() => {
         if (filteredEvents.length === 1) {
-            setExpandedEvents([0]); // Automatically expand the single event if there's only one
+            setExpandedEvents([0]);
         }
     }, [filteredEvents]);
 
-    // Toggle expand for multiple events
     const toggleExpand = (index: number) => {
         if (expandedEvents.includes(index)) {
-            setExpandedEvents(expandedEvents.filter(i => i !== index)); // Collapse if already expanded
+            setExpandedEvents(expandedEvents.filter((i) => i !== index));
         } else {
-            setExpandedEvents([...expandedEvents, index]); // Expand if not already expanded
+            setExpandedEvents([...expandedEvents, index]);
         }
     };
 
@@ -86,14 +83,14 @@ const Events: React.FC = () => {
                 <EventContainer
                     key={index}
                     style={{
-                        overflow: filteredEvents.length === 1 ? 'hidden' : 'auto',
+                        overflow: filteredEvents.length === 1 ? 'hidden' : 'auto'
                     }}
                 >
                     <EventHeader
                         imageUrl={event.eventUrls.imageUrl}
                         onClick={() => toggleExpand(index)}
                         style={{
-                            cursor: filteredEvents.length === 1 ? 'default' : 'pointer',
+                            cursor: filteredEvents.length === 1 ? 'default' : 'pointer'
                         }}
                     >
                         {event.eventUrls.imageUrl ? (
@@ -104,7 +101,11 @@ const Events: React.FC = () => {
                     </EventHeader>
                     {expandedEvents.includes(index) && (
                         <EventDetails>
-                            <EventCountdown dateOfEvent={event.ISODateOfEvent} message={event.countdownEventMessage} spanOfEvent={3} />
+                            <EventCountdown
+                                dateOfEvent={event.ISODateOfEvent}
+                                message={event.countdownEventMessage}
+                                spanOfEvent={3}
+                            />
                             <p>{event.description}</p>
                             {generateEventLinks(event)}
                             <MapLinks address={event.address} locationName={event.locationName} />

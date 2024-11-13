@@ -208,7 +208,7 @@ const LinkOption = styled.li`
 `;
 
 const Icon = styled.div`
-    display: none; /* Hide icons by default */
+    display: none;
 
     @media only screen and (max-width: ${MEDIUM_DEVICE_WIDTH}px) {
         display: inline-flex; /* Show icons only on mobile screens */

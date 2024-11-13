@@ -1,5 +1,5 @@
 {
-    "name": "ricocreations",
+    "name": "ricocreations.com",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -34,14 +34,16 @@
         "yup": "^0.31.1"
     },
     "scripts": {
-        "start": "set PORT=3005 && react-app-rewired start",
-        "build": "cross-env react-app-rewired --max-old-space-size=4096 build",
-        "test": "cross-env react-app-rewired test",
-        "eject": "react-scripts eject",
+        "start": "craco start",
+        "build": "craco --max-old-space-size=4096 build",
+        "test": "craco test",
         "format": "prettier --write src/**/*.{js,jsx,ts,tsx}",
         "lint": "eslint --fix src/**/*.{js,jsx,ts,tsx}",
-        "commit": "node commit.js",
-        "deploy": "node deploy.js"
+        "commit": "node developer/scripts/commit.js",
+        "deploy": "node developer/scripts/deploy.js",
+        "createComponentAt": "node developer/scripts/createComponentAt.js",
+        "createForm": "node developer/scripts/createForm.js",
+        "addPage": "node developer/scripts/addPage.js"
     },
     "eslintConfig": {
         "extends": [
@@ -64,6 +66,7 @@
     },
     "devDependencies": {
         "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+        "@craco/craco": "^7.1.0",
         "@types/aes-js": "^3.1.1",
         "@types/jest": "^26.0.24",
         "@types/jsonwebtoken": "^8.5.0",

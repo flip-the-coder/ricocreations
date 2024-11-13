@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginLayout from './LoginLayout';
-import MainPage from '../../../NavigationBar';
+import MainPage from '../../Header/Header';
 
 const LoginRoutes = ({ children }) => {
     return (
