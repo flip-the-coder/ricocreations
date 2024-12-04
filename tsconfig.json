@@ -20,5 +20,6 @@
         "noImplicitAny": false,
         "types": ["react", "react-dom", "react-intl"] // Add this line
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx"]
+    "include": ["src/**/*.ts", "src/**/*.tsx"],
+    "exclude": ["node_modules", "**/*.test.tsx", "**/*.spec.tsx"],
 }

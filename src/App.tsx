@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { MEDIUM_DEVICE_WIDTH } from './utils/browserUtils';
 import NotificationProvider from './components/Notification/NotificationProvider';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 import Loader from './components/Loader';
 import ChangeAnswerSpinner from './components/UI/ChangeAnswerSpinner';
@@ -10,7 +10,7 @@ import { useStores } from './hooks/useStores';
 import { DEFAULT_THEME } from './stores/ThemeStore';
 import DispensaryRoutes from './components/Pages/DispensaryRoutes';
 
-const Home = lazy(() => import('./components/Pages/Home/Home'));
+const Home = lazy(() => import('./components/Pages/Products/Home'));
 const Dispensary = lazy(() => import('./components/Pages/Dispensary/Dispensary'));
 const ContactUs = lazy(() => import('./components/Pages/ContactUs/ContactUs'));
 const Events = lazy(() => import('./components/Pages/Events/Events'));
@@ -27,6 +27,14 @@ const InitialReactPage = () => {
                     <GlobalStyle theme={themeStore.theme} />
                     <Suspense fallback={<ChangeAnswerSpinner isVisible />}>
                         <Routes>
+                        <Route
+                                path="/home"
+                                element={
+                                    <DispensaryRoutes>
+                                        <Home />
+                                    </DispensaryRoutes>
+                                }
+                            />
                             <Route
                                 path="/dispensary"
                                 element={
@@ -64,7 +72,7 @@ const InitialReactPage = () => {
                                 path="*"
                                 element={
                                     <DispensaryRoutes>
-                                        <Home />
+                                        <Navigate to={'/home'} />
                                     </DispensaryRoutes>
                                 }
                             />
