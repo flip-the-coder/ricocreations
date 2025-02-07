@@ -16,13 +16,14 @@ const Home: React.FC = () => {
         setSelectedCategory(category);
     };
 
-    useEffect(() => {
-        const getInitialJavaApiCall = async () => {
-            const message = (await flipTheCoders.flipTheCoders.getList()).data;
-            console.log(message);
-        };
-        getInitialJavaApiCall();
-    }, []);
+    // useEffect(() => {
+    //     const getInitialJavaApiCall = async () => {
+    //         const message = (await flipTheCoders.flipTheCoders.verifyConnection()).data;
+    //         console.clear();
+    //         console.log(message);
+    //     };
+    //     getInitialJavaApiCall();
+    // }, []);
 
     const filteredProducts =
         selectedCategory === ProductType.ALL

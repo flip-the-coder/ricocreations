@@ -72,10 +72,7 @@ export const products: Product[] = [
         price: 34.99,
         description: 'A sleek vape pen for a smooth and flavorful CBD experience.',
         type: [ProductType.SMOKABLE],
-        photos: [
-            'https://images.pexels.com/photos/1048306/pexels-photo-1048306.jpeg',
-            'https://images.pexels.com/photos/2280543/pexels-photo-2280543.jpeg'
-        ],
+        photos: ['https://images.pexels.com/photos/2280543/pexels-photo-2280543.jpeg'],
         rating: 4.5,
         quantity: 0
     },
@@ -98,10 +95,7 @@ export const products: Product[] = [
         price: 15.99,
         description: 'Delicious and chewy CBD-infused gummy bears for a sweet treat.',
         type: [ProductType.EDIBLES],
-        photos: [
-            'https://images.pexels.com/photos/466803/pexels-photo-466803.jpeg',
-            'https://images.pexels.com/photos/1047047/pexels-photo-1047047.jpeg'
-        ],
+        photos: [],
         rating: 4.5,
         quantity: 0
     },
@@ -111,10 +105,7 @@ export const products: Product[] = [
         price: 24.99,
         description: 'A stylish glass pipe for your smoking needs.',
         type: [ProductType.ACCESSORIES],
-        photos: [
-            'https://images.pexels.com/photos/2696140/pexels-photo-2696140.jpeg',
-            'https://images.pexels.com/photos/428378/pexels-photo-428378.jpeg'
-        ],
+        photos: [],
         rating: 4,
         quantity: 0
     }

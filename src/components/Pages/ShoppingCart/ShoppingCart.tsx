@@ -1,19 +1,15 @@
-// src/components/ShoppingCart/ShoppingCart.tsx
-
 import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStores } from '../../../hooks/useStores';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { CenteredContainer, FormContainer, InputContainer, Error, PlaceOrderButton } from './ShoppingCart.style';
 import CartItem from './CartItem';
 import AddressForm, { AddressType } from './AddressForm';
-import PaymentForm, { PaymentInfoType } from './PaymentForm';
+import PaymentForm from './PaymentForm';
 import CartSummary from './CartSummary';
+import squareApi from '../../../api/squareApi';
 
 const ShoppingCart = observer(() => {
     const { cartStore } = useStores();
-    const navigate = useNavigate();
     const [totalPrice, setTotalPrice] = useState<number>(0);
     const [totalItems, setTotalItems] = useState<number>(0);
     const [shippingAddress, setShippingAddress] = useState<AddressType>({
@@ -31,7 +27,6 @@ const ShoppingCart = observer(() => {
         zipCode: ''
     });
     const [useBillingAddress, setUseBillingAddress] = useState<boolean>(false);
-    const [paymentInfo, setPaymentInfo] = useState<PaymentInfoType>({ cardNumber: '', expiryDate: '', cvv: '' });
     const [isProcessing, setIsProcessing] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -42,7 +37,7 @@ const ShoppingCart = observer(() => {
 
     useEffect(() => {
         if (useBillingAddress) {
-            setBillingAddress(shippingAddress);
+            setBillingAddress({ ...shippingAddress });
         }
     }, [useBillingAddress, shippingAddress]);
 
@@ -53,11 +48,6 @@ const ShoppingCart = observer(() => {
         } else {
             setBillingAddress((prev) => ({ ...prev, [name]: value }));
         }
-    };
-
-    const handlePaymentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setPaymentInfo((prev) => ({ ...prev, [name]: value }));
     };
 
     const handleRemoveItem = (itemId: string) => cartStore.removeFromCart(itemId);
@@ -80,14 +70,17 @@ const ShoppingCart = observer(() => {
 
     const handlePlaceOrder = async () => {
         setIsProcessing(true);
+
         try {
-            await axios.post('/api/orders', {
-                cart: cartStore.cart,
-                shippingAddress,
-                billingAddress: useBillingAddress ? shippingAddress : billingAddress,
-                paymentInfo
-            });
-            navigate('/order-confirmation');
+            const response = await squareApi.payments.sendPayment(
+                totalPrice,
+                'USD',
+                'cnon:card-nonce-ok',
+                '1a416e07-c431-499c-9cd0-1b24db0773fb'
+            );
+
+            console.log(response.data);
+            // navigate('/order-confirmation');
         } catch (err) {
             setError('Error placing order');
         } finally {
@@ -136,7 +129,7 @@ const ShoppingCart = observer(() => {
                                 title="Billing Address"
                             />
                         )}
-                        <PaymentForm paymentInfo={paymentInfo} onChange={handlePaymentChange} />
+                        <PaymentForm />
                         {error && <Error>{error}</Error>}
                         <PlaceOrderButton onClick={handlePlaceOrder} disabled={isProcessing}>
                             {isProcessing ? 'Processing...' : 'Place Order'}

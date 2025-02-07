@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "@fontsource/dancing-script": "^5.0.19",
+        "@square/web-sdk": "^2.0.1",
         "axios": "^0.21.1",
         "browserify-zlib": "^0.2.0",
         "formik": "^2.1.5",
@@ -30,6 +31,7 @@
         "react-slick": "^0.29.0",
         "react-spring": "^8.0.27",
         "react-swipeable": "^7.0.1",
+        "square": "^39.0.0",
         "styled-components": "^5.3.11",
         "yup": "^0.31.1"
     },
