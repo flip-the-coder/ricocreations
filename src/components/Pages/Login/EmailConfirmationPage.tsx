@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import { Navigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import userApi from '../../../api/userApi';
-import Spinner from '../../Spinner';
+import Spinner from '../../UI/Spinner';
 import { LoginFormLayout } from './LoginLayout';
 import { ErrorContainer } from './LoginPage.styled';
 import { Error } from '../../../models/Error';

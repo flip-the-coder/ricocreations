@@ -1,11 +1,10 @@
 import { observer } from 'mobx-react-lite';
-import React, { useState, useEffect } from 'react';
-import Gallery from '../../ImageGallery/Gallery';
+import React, { useState } from 'react';
+import Gallery from '../../UI/ImageGallery/Gallery';
 import { Product, products, ProductType, FilterOptions } from '../../../models/Product';
 import CategoryFilter from './CategoryFilter/CategoryFilter';
 import { HomeStyles } from './Home.style';
 import { useStores } from '../../../hooks/useStores';
-import flipTheCoders from '../../../api/flipTheCoders';
 
 const Home: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<ProductType>(ProductType.ALL);

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Spinner from '../../Spinner';
+import Spinner from '../Spinner';
 
 const OptionContainerSpinner: React.FC = () => (
     <SpinnerStyle>

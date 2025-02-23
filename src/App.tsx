@@ -4,7 +4,7 @@ import { MEDIUM_DEVICE_WIDTH } from './utils/browserUtils';
 import NotificationProvider from './components/Notification/NotificationProvider';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
-import Loader from './components/Loader';
+import Loader from './components/UI/Loader';
 import ChangeAnswerSpinner from './components/UI/ChangeAnswerSpinner';
 import { useStores } from './hooks/useStores';
 import { DEFAULT_THEME } from './stores/ThemeStore';
